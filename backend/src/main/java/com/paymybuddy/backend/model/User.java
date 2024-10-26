@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -50,6 +51,19 @@ public class User {
 			)
 	private List<User> connections = new ArrayList<User>();
 
+	@OneToMany(
+			mappedBy = "sender",
+			cascade = CascadeType.ALL
+			)
+	private List<Transaction> transactionSender = new ArrayList<Transaction>();
+	
+	@OneToMany(
+			mappedBy = "receiver",
+			cascade = CascadeType.ALL
+			)
+	private List<Transaction> transactionReceiver = new ArrayList<Transaction>();
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -90,6 +104,22 @@ public class User {
 		this.connections = connections;
 	}
 	
+	public List<Transaction> getTransactionSender() {
+		return transactionSender;
+	}
+
+	public void setTransactionSender(List<Transaction> transactionSender) {
+		this.transactionSender = transactionSender;
+	}
+
+	public List<Transaction> getTransactionReceiver() {
+		return transactionReceiver;
+	}
+
+	public void setTransactionReceiver(List<Transaction> transactionReceiver) {
+		this.transactionReceiver = transactionReceiver;
+	}
+
 	//Util method
 	public void addConnections(User user) {
 		
