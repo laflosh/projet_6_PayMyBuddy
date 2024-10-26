@@ -1,0 +1,345 @@
+2024-10-26T15:38:38.431+0200 ERROR Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2024-10-26T15:40:11.257+0200 ERROR Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2024-10-26T15:42:55.400+0200 INFO Could not detect default configuration classes for test class [com.paymybuddy.backend.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-10-26T15:42:55.519+0200 INFO Found @SpringBootConfiguration com.paymybuddy.backend.BackendApplication for test class com.paymybuddy.backend.BackendApplicationTests
+2024-10-26T15:42:56.735+0200 ERROR Application run failed
+java.lang.IllegalStateException: Failed to introspect Class [com.paymybuddy.backend.BackendApplication] from ClassLoader [jdk.internal.loader.ClassLoaders$AppClassLoader@28c97a5]
+	at org.springframework.util.ReflectionUtils.getDeclaredFields(ReflectionUtils.java:757) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.util.ReflectionUtils.doWithFields(ReflectionUtils.java:722) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.util.ReflectionUtils.doWithFields(ReflectionUtils.java:707) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.boot.test.mock.mockito.DefinitionsParser.parse(DefinitionsParser.java:65) ~[spring-boot-test-3.3.5.jar:3.3.5]
+	at org.springframework.boot.test.mock.mockito.MockitoPostProcessor.postProcessBeanFactory(MockitoPostProcessor.java:136) ~[spring-boot-test-3.3.5.jar:3.3.5]
+	at org.springframework.boot.test.mock.mockito.MockitoPostProcessor.postProcessBeanFactory(MockitoPostProcessor.java:129) ~[spring-boot-test-3.3.5.jar:3.3.5]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:789) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:607) ~[spring-context-6.1.14.jar:6.1.14]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137) ~[spring-boot-test-3.3.5.jar:3.3.5]
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1463) ~[spring-boot-3.3.5.jar:3.3.5]
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:553) ~[spring-boot-test-3.3.5.jar:3.3.5]
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137) ~[spring-boot-test-3.3.5.jar:3.3.5]
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108) ~[spring-boot-test-3.3.5.jar:3.3.5]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225) ~[spring-test-6.1.14.jar:6.1.14]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152) ~[spring-test-6.1.14.jar:6.1.14]
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130) ~[spring-test-6.1.14.jar:6.1.14]
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191) ~[spring-test-6.1.14.jar:6.1.14]
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130) ~[spring-test-6.1.14.jar:6.1.14]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260) ~[spring-test-6.1.14.jar:6.1.14]
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163) ~[spring-test-6.1.14.jar:6.1.14]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?]
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[?:?]
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625) ~[?:?]
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[?:?]
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[?:?]
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310) ~[?:?]
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735) ~[?:?]
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734) ~[?:?]
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[?:?]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at java.base/java.util.Optional.orElseGet(Optional.java:364) ~[?:?]
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.5.jar:5.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:128) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:128) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[?:?]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:160) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:146) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:144) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:143) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:100) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) [junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) [junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) [junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) [junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) [junit-platform-launcher-1.10.5.jar:1.10.5]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) [surefire-junit-platform-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) [surefire-booter-3.2.5.jar:3.2.5]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) [surefire-booter-3.2.5.jar:3.2.5]
+Caused by: java.lang.NoClassDefFoundError: Logger
+	at java.base/java.lang.Class.getDeclaredFields0(Native Method) ~[?:?]
+	at java.base/java.lang.Class.privateGetDeclaredFields(Class.java:3297) ~[?:?]
+	at java.base/java.lang.Class.getDeclaredFields(Class.java:2371) ~[?:?]
+	at org.springframework.util.ReflectionUtils.getDeclaredFields(ReflectionUtils.java:752) ~[spring-core-6.1.14.jar:6.1.14]
+	... 94 more
+Caused by: java.lang.ClassNotFoundException: Logger
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[?:?]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[?:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?]
+	at java.base/java.lang.Class.getDeclaredFields0(Native Method) ~[?:?]
+	at java.base/java.lang.Class.privateGetDeclaredFields(Class.java:3297) ~[?:?]
+	at java.base/java.lang.Class.getDeclaredFields(Class.java:2371) ~[?:?]
+	at org.springframework.util.ReflectionUtils.getDeclaredFields(ReflectionUtils.java:752) ~[spring-core-6.1.14.jar:6.1.14]
+	... 94 more
+2024-10-26T15:46:03.001+0200 INFO Initalizing API PayMyBuddy
+2024-10-26T15:46:07.554+0200 ERROR Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2024-10-26T15:50:27.470+0200 INFO Initalizing API PayMyBuddy
+2024-10-26T15:52:54.160+0200 INFO Initalizing API PayMyBuddy
+2024-10-26T15:53:09.024+0200 INFO Initalizing API PayMyBuddy
+2024-10-26T15:53:10.751+0200 DEBUG Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@42110406
+2024-10-26T15:53:10.860+0200 DEBUG Fetching JDBC Connection from DataSource
+2024-10-26T15:53:10.861+0200 DEBUG HikariPool-1 - configuration:
+2024-10-26T15:53:10.866+0200 DEBUG allowPoolSuspension.............false
+2024-10-26T15:53:10.866+0200 DEBUG autoCommit......................true
+2024-10-26T15:53:10.867+0200 DEBUG catalog.........................none
+2024-10-26T15:53:10.867+0200 DEBUG connectionInitSql...............none
+2024-10-26T15:53:10.867+0200 DEBUG connectionTestQuery.............none
+2024-10-26T15:53:10.867+0200 DEBUG connectionTimeout...............30000
+2024-10-26T15:53:10.867+0200 DEBUG dataSource......................none
+2024-10-26T15:53:10.867+0200 DEBUG dataSourceClassName.............none
+2024-10-26T15:53:10.867+0200 DEBUG dataSourceJNDI..................none
+2024-10-26T15:53:10.868+0200 DEBUG dataSourceProperties............{password=<masked>}
+2024-10-26T15:53:10.868+0200 DEBUG driverClassName................."com.mysql.cj.jdbc.Driver"
+2024-10-26T15:53:10.869+0200 DEBUG exceptionOverrideClassName......none
+2024-10-26T15:53:10.869+0200 DEBUG healthCheckProperties...........{}
+2024-10-26T15:53:10.869+0200 DEBUG healthCheckRegistry.............none
+2024-10-26T15:53:10.869+0200 DEBUG idleTimeout.....................600000
+2024-10-26T15:53:10.869+0200 DEBUG initializationFailTimeout.......1
+2024-10-26T15:53:10.870+0200 DEBUG isolateInternalQueries..........false
+2024-10-26T15:53:10.870+0200 DEBUG jdbcUrl.........................jdbc:mysql://localhost:3306/paymybuddy?serverTimezone=UTC
+2024-10-26T15:53:10.870+0200 DEBUG keepaliveTime...................0
+2024-10-26T15:53:10.870+0200 DEBUG leakDetectionThreshold..........0
+2024-10-26T15:53:10.870+0200 DEBUG maxLifetime.....................1800000
+2024-10-26T15:53:10.870+0200 DEBUG maximumPoolSize.................10
+2024-10-26T15:53:10.871+0200 DEBUG metricRegistry..................none
+2024-10-26T15:53:10.871+0200 DEBUG metricsTrackerFactory...........none
+2024-10-26T15:53:10.871+0200 DEBUG minimumIdle.....................10
+2024-10-26T15:53:10.871+0200 DEBUG password........................<masked>
+2024-10-26T15:53:10.871+0200 DEBUG poolName........................"HikariPool-1"
+2024-10-26T15:53:10.871+0200 DEBUG readOnly........................false
+2024-10-26T15:53:10.871+0200 DEBUG registerMbeans..................false
+2024-10-26T15:53:10.871+0200 DEBUG scheduledExecutor...............none
+2024-10-26T15:53:10.871+0200 DEBUG schema..........................none
+2024-10-26T15:53:10.871+0200 DEBUG threadFactory...................internal
+2024-10-26T15:53:10.872+0200 DEBUG transactionIsolation............default
+2024-10-26T15:53:10.872+0200 DEBUG username........................"root"
+2024-10-26T15:53:10.872+0200 DEBUG validationTimeout...............5000
+2024-10-26T15:53:10.872+0200 INFO HikariPool-1 - Starting...
+2024-10-26T15:53:11.014+0200 INFO HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b56ec6c
+2024-10-26T15:53:11.015+0200 INFO HikariPool-1 - Start completed.
+2024-10-26T15:53:11.127+0200 DEBUG HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+2024-10-26T15:53:11.131+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a4da48b
+2024-10-26T15:53:11.174+0200 DEBUG HikariPool-1 - After adding stats (total=2, active=0, idle=2, waiting=0)
+2024-10-26T15:53:11.177+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b70aeb0
+2024-10-26T15:53:11.220+0200 DEBUG HikariPool-1 - After adding stats (total=3, active=0, idle=3, waiting=0)
+2024-10-26T15:53:11.224+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a51c272
+2024-10-26T15:53:11.267+0200 DEBUG HikariPool-1 - After adding stats (total=4, active=0, idle=4, waiting=0)
+2024-10-26T15:53:11.274+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b5f51ff
+2024-10-26T15:53:11.314+0200 DEBUG HikariPool-1 - After adding stats (total=5, active=0, idle=5, waiting=0)
+2024-10-26T15:53:11.319+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38740386
+2024-10-26T15:53:11.361+0200 DEBUG HikariPool-1 - After adding stats (total=6, active=0, idle=6, waiting=0)
+2024-10-26T15:53:11.363+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f11ae11
+2024-10-26T15:53:11.408+0200 DEBUG HikariPool-1 - After adding stats (total=7, active=0, idle=7, waiting=0)
+2024-10-26T15:53:11.411+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b8ea74d
+2024-10-26T15:53:11.454+0200 DEBUG HikariPool-1 - After adding stats (total=8, active=0, idle=8, waiting=0)
+2024-10-26T15:53:11.459+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@11e1dbaa
+2024-10-26T15:53:11.501+0200 DEBUG HikariPool-1 - After adding stats (total=9, active=0, idle=9, waiting=0)
+2024-10-26T15:53:11.505+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b2590e8
+2024-10-26T15:53:11.547+0200 DEBUG HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:53:41.135+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:53:41.136+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:54:11.148+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:54:11.148+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:54:41.156+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:54:41.157+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:55:11.162+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:55:11.164+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:55:41.181+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:55:41.182+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:56:11.190+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:56:11.190+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:56:41.202+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:56:41.203+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:57:11.215+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:57:11.216+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:57:54.825+0200 INFO Initalizing API PayMyBuddy
+2024-10-26T15:57:56.462+0200 DEBUG Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@42110406
+2024-10-26T15:57:56.551+0200 DEBUG Fetching JDBC Connection from DataSource
+2024-10-26T15:57:56.552+0200 DEBUG HikariPool-1 - configuration:
+2024-10-26T15:57:56.558+0200 DEBUG allowPoolSuspension.............false
+2024-10-26T15:57:56.558+0200 DEBUG autoCommit......................true
+2024-10-26T15:57:56.559+0200 DEBUG catalog.........................none
+2024-10-26T15:57:56.559+0200 DEBUG connectionInitSql...............none
+2024-10-26T15:57:56.559+0200 DEBUG connectionTestQuery.............none
+2024-10-26T15:57:56.559+0200 DEBUG connectionTimeout...............30000
+2024-10-26T15:57:56.559+0200 DEBUG dataSource......................none
+2024-10-26T15:57:56.560+0200 DEBUG dataSourceClassName.............none
+2024-10-26T15:57:56.560+0200 DEBUG dataSourceJNDI..................none
+2024-10-26T15:57:56.561+0200 DEBUG dataSourceProperties............{password=<masked>}
+2024-10-26T15:57:56.561+0200 DEBUG driverClassName................."com.mysql.cj.jdbc.Driver"
+2024-10-26T15:57:56.562+0200 DEBUG exceptionOverrideClassName......none
+2024-10-26T15:57:56.562+0200 DEBUG healthCheckProperties...........{}
+2024-10-26T15:57:56.562+0200 DEBUG healthCheckRegistry.............none
+2024-10-26T15:57:56.562+0200 DEBUG idleTimeout.....................600000
+2024-10-26T15:57:56.563+0200 DEBUG initializationFailTimeout.......1
+2024-10-26T15:57:56.563+0200 DEBUG isolateInternalQueries..........false
+2024-10-26T15:57:56.564+0200 DEBUG jdbcUrl.........................jdbc:mysql://localhost:3306/paymybuddy?serverTimezone=UTC
+2024-10-26T15:57:56.565+0200 DEBUG keepaliveTime...................0
+2024-10-26T15:57:56.565+0200 DEBUG leakDetectionThreshold..........0
+2024-10-26T15:57:56.566+0200 DEBUG maxLifetime.....................1800000
+2024-10-26T15:57:56.567+0200 DEBUG maximumPoolSize.................10
+2024-10-26T15:57:56.567+0200 DEBUG metricRegistry..................none
+2024-10-26T15:57:56.568+0200 DEBUG metricsTrackerFactory...........none
+2024-10-26T15:57:56.568+0200 DEBUG minimumIdle.....................10
+2024-10-26T15:57:56.568+0200 DEBUG password........................<masked>
+2024-10-26T15:57:56.569+0200 DEBUG poolName........................"HikariPool-1"
+2024-10-26T15:57:56.569+0200 DEBUG readOnly........................false
+2024-10-26T15:57:56.569+0200 DEBUG registerMbeans..................false
+2024-10-26T15:57:56.570+0200 DEBUG scheduledExecutor...............none
+2024-10-26T15:57:56.570+0200 DEBUG schema..........................none
+2024-10-26T15:57:56.570+0200 DEBUG threadFactory...................internal
+2024-10-26T15:57:56.570+0200 DEBUG transactionIsolation............default
+2024-10-26T15:57:56.570+0200 DEBUG username........................"root"
+2024-10-26T15:57:56.570+0200 DEBUG validationTimeout...............5000
+2024-10-26T15:57:56.570+0200 INFO HikariPool-1 - Starting...
+2024-10-26T15:57:56.695+0200 INFO HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@57c69937
+2024-10-26T15:57:56.696+0200 INFO HikariPool-1 - Start completed.
+2024-10-26T15:57:56.799+0200 DEBUG HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+2024-10-26T15:57:56.802+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6d6a813b
+2024-10-26T15:57:56.846+0200 DEBUG HikariPool-1 - After adding stats (total=2, active=0, idle=2, waiting=0)
+2024-10-26T15:57:56.848+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2c578b00
+2024-10-26T15:57:56.893+0200 DEBUG HikariPool-1 - After adding stats (total=3, active=0, idle=3, waiting=0)
+2024-10-26T15:57:56.896+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1d3187c8
+2024-10-26T15:57:56.940+0200 DEBUG HikariPool-1 - After adding stats (total=4, active=0, idle=4, waiting=0)
+2024-10-26T15:57:56.949+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c78744f
+2024-10-26T15:57:56.986+0200 DEBUG HikariPool-1 - After adding stats (total=5, active=0, idle=5, waiting=0)
+2024-10-26T15:57:56.990+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@24bd10cd
+2024-10-26T15:57:57.033+0200 DEBUG HikariPool-1 - After adding stats (total=6, active=0, idle=6, waiting=0)
+2024-10-26T15:57:57.036+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4836cc86
+2024-10-26T15:57:57.080+0200 DEBUG HikariPool-1 - After adding stats (total=7, active=1, idle=6, waiting=0)
+2024-10-26T15:57:57.083+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fbab444
+2024-10-26T15:57:57.127+0200 DEBUG HikariPool-1 - After adding stats (total=8, active=0, idle=8, waiting=0)
+2024-10-26T15:57:57.129+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e3bb938
+2024-10-26T15:57:57.174+0200 DEBUG HikariPool-1 - After adding stats (total=9, active=0, idle=9, waiting=0)
+2024-10-26T15:57:57.177+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78c49ed8
+2024-10-26T15:57:57.220+0200 DEBUG HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:58:26.809+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:58:26.810+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:58:56.824+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:58:56.825+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:59:26.835+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:59:26.836+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T15:59:56.844+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T15:59:56.844+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T16:00:26.860+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T16:00:26.861+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T16:00:56.868+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T16:00:56.868+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T16:01:26.870+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T16:01:26.871+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T16:01:56.886+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T16:01:56.886+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T16:02:05.759+0200 INFO Initalizing API PayMyBuddy
+2024-10-26T16:02:07.544+0200 DEBUG Driver class com.mysql.cj.jdbc.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@42110406
+2024-10-26T16:02:07.644+0200 DEBUG Fetching JDBC Connection from DataSource
+2024-10-26T16:02:07.646+0200 DEBUG HikariPool-1 - configuration:
+2024-10-26T16:02:07.652+0200 DEBUG allowPoolSuspension.............false
+2024-10-26T16:02:07.652+0200 DEBUG autoCommit......................true
+2024-10-26T16:02:07.652+0200 DEBUG catalog.........................none
+2024-10-26T16:02:07.652+0200 DEBUG connectionInitSql...............none
+2024-10-26T16:02:07.653+0200 DEBUG connectionTestQuery.............none
+2024-10-26T16:02:07.653+0200 DEBUG connectionTimeout...............30000
+2024-10-26T16:02:07.653+0200 DEBUG dataSource......................none
+2024-10-26T16:02:07.653+0200 DEBUG dataSourceClassName.............none
+2024-10-26T16:02:07.653+0200 DEBUG dataSourceJNDI..................none
+2024-10-26T16:02:07.654+0200 DEBUG dataSourceProperties............{password=<masked>}
+2024-10-26T16:02:07.654+0200 DEBUG driverClassName................."com.mysql.cj.jdbc.Driver"
+2024-10-26T16:02:07.654+0200 DEBUG exceptionOverrideClassName......none
+2024-10-26T16:02:07.654+0200 DEBUG healthCheckProperties...........{}
+2024-10-26T16:02:07.655+0200 DEBUG healthCheckRegistry.............none
+2024-10-26T16:02:07.655+0200 DEBUG idleTimeout.....................600000
+2024-10-26T16:02:07.655+0200 DEBUG initializationFailTimeout.......1
+2024-10-26T16:02:07.655+0200 DEBUG isolateInternalQueries..........false
+2024-10-26T16:02:07.655+0200 DEBUG jdbcUrl.........................jdbc:mysql://localhost:3306/paymybuddy?serverTimezone=UTC
+2024-10-26T16:02:07.655+0200 DEBUG keepaliveTime...................0
+2024-10-26T16:02:07.656+0200 DEBUG leakDetectionThreshold..........0
+2024-10-26T16:02:07.656+0200 DEBUG maxLifetime.....................1800000
+2024-10-26T16:02:07.656+0200 DEBUG maximumPoolSize.................10
+2024-10-26T16:02:07.656+0200 DEBUG metricRegistry..................none
+2024-10-26T16:02:07.656+0200 DEBUG metricsTrackerFactory...........none
+2024-10-26T16:02:07.656+0200 DEBUG minimumIdle.....................10
+2024-10-26T16:02:07.656+0200 DEBUG password........................<masked>
+2024-10-26T16:02:07.657+0200 DEBUG poolName........................"HikariPool-1"
+2024-10-26T16:02:07.657+0200 DEBUG readOnly........................false
+2024-10-26T16:02:07.658+0200 DEBUG registerMbeans..................false
+2024-10-26T16:02:07.658+0200 DEBUG scheduledExecutor...............none
+2024-10-26T16:02:07.658+0200 DEBUG schema..........................none
+2024-10-26T16:02:07.658+0200 DEBUG threadFactory...................internal
+2024-10-26T16:02:07.658+0200 DEBUG transactionIsolation............default
+2024-10-26T16:02:07.658+0200 DEBUG username........................"root"
+2024-10-26T16:02:07.658+0200 DEBUG validationTimeout...............5000
+2024-10-26T16:02:07.658+0200 INFO HikariPool-1 - Starting...
+2024-10-26T16:02:07.794+0200 INFO HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4df7d9ee
+2024-10-26T16:02:07.796+0200 INFO HikariPool-1 - Start completed.
+2024-10-26T16:02:07.908+0200 DEBUG HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+2024-10-26T16:02:07.913+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2f628d51
+2024-10-26T16:02:07.954+0200 DEBUG HikariPool-1 - After adding stats (total=2, active=0, idle=2, waiting=0)
+2024-10-26T16:02:07.958+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e5f876a
+2024-10-26T16:02:08.000+0200 DEBUG HikariPool-1 - After adding stats (total=3, active=0, idle=3, waiting=0)
+2024-10-26T16:02:08.003+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5ffb49b6
+2024-10-26T16:02:08.049+0200 DEBUG HikariPool-1 - After adding stats (total=4, active=0, idle=4, waiting=0)
+2024-10-26T16:02:08.051+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e707825
+2024-10-26T16:02:08.095+0200 DEBUG HikariPool-1 - After adding stats (total=5, active=0, idle=5, waiting=0)
+2024-10-26T16:02:08.098+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d6ea8c4
+2024-10-26T16:02:08.141+0200 DEBUG HikariPool-1 - After adding stats (total=6, active=0, idle=6, waiting=0)
+2024-10-26T16:02:08.144+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@a3e02ec
+2024-10-26T16:02:08.187+0200 DEBUG HikariPool-1 - After adding stats (total=7, active=0, idle=7, waiting=0)
+2024-10-26T16:02:08.192+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@15c09123
+2024-10-26T16:02:08.235+0200 DEBUG HikariPool-1 - After adding stats (total=8, active=1, idle=7, waiting=0)
+2024-10-26T16:02:08.237+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7f9aeafe
+2024-10-26T16:02:08.284+0200 DEBUG HikariPool-1 - After adding stats (total=9, active=0, idle=9, waiting=0)
+2024-10-26T16:02:08.287+0200 DEBUG HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@22f835fa
+2024-10-26T16:02:08.327+0200 DEBUG HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T16:02:37.913+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T16:02:37.913+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2024-10-26T16:03:07.924+0200 DEBUG HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-10-26T16:03:07.926+0200 DEBUG HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
