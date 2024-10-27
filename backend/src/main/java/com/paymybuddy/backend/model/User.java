@@ -51,7 +51,7 @@ public class User {
 			joinColumns = @JoinColumn(name = "id_user"),
 			inverseJoinColumns = @JoinColumn(name = "id_user_connection")
 			)
-	@JsonIgnoreProperties({"connections", "transactionSender", "transactionReceiver"})
+	@JsonIgnoreProperties({"password","connections", "transactionSender", "transactionReceiver"})
 	private List<User> connections = new ArrayList<User>();
 
 	@OneToMany(
