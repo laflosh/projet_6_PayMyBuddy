@@ -31,5 +31,11 @@ public class UserService {
 		return userRepository.save(user);
 		
 	}
+
+	public User updateAExistingUser(User user) {
+		
+		return userRepository.save(user);
+		
+	}
 	
 }
