@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -51,21 +51,24 @@ public class User {
 			joinColumns = @JoinColumn(name = "id_user"),
 			inverseJoinColumns = @JoinColumn(name = "id_user_connection")
 			)
-	@JsonIgnoreProperties({"password","connections", "transactionSender", "transactionReceiver"})
+	//@JsonIgnoreProperties({"password","connections", "transactionSender", "transactionReceiver"})
+	@JsonIgnore
 	private List<User> connections = new ArrayList<User>();
 
 	@OneToMany(
 			mappedBy = "sender",
 			cascade = CascadeType.ALL
 			)
-	@JsonIgnoreProperties({"sender"})
+	//@JsonIgnoreProperties({"sender"})
+	@JsonIgnore
 	private List<Transaction> transactionSender = new ArrayList<Transaction>();
 	
 	@OneToMany(
 			mappedBy = "receiver",
 			cascade = CascadeType.ALL
 			)
-	@JsonIgnoreProperties({"receiver"})
+	//@JsonIgnoreProperties({"receiver"})
+	@JsonIgnore
 	private List<Transaction> transactionReceiver = new ArrayList<Transaction>();
 	
 	
