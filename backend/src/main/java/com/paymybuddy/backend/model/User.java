@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,7 +27,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "user_id")
 	private int id;
 	
 	@Column(name = "username")
@@ -46,21 +48,24 @@ public class User {
 			)
 	@JoinTable(
 			name = "user_connections",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "connection_user_id")
+			joinColumns = @JoinColumn(name = "id_user"),
+			inverseJoinColumns = @JoinColumn(name = "id_user_connection")
 			)
+	@JsonIgnoreProperties({"connections", "transactionSender", "transactionReceiver"})
 	private List<User> connections = new ArrayList<User>();
 
 	@OneToMany(
 			mappedBy = "sender",
 			cascade = CascadeType.ALL
 			)
+	@JsonIgnoreProperties({"sender"})
 	private List<Transaction> transactionSender = new ArrayList<Transaction>();
 	
 	@OneToMany(
 			mappedBy = "receiver",
 			cascade = CascadeType.ALL
 			)
+	@JsonIgnoreProperties({"receiver"})
 	private List<Transaction> transactionReceiver = new ArrayList<Transaction>();
 	
 	
