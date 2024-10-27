@@ -3,6 +3,7 @@ package com.paymybuddy.backend.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,5 +50,18 @@ public class UserController {
 		
 	}
 	
+	@DeleteMapping("/users")
+	public void deleteAExistingUser(@RequestBody User user) {
+		
+		userService.deleteAExistingUser(user);
+		
+	}
+	
+	@DeleteMapping("/users/{id}")
+	public void deleteAExistingUserById(@PathVariable int id) {
+		
+		userService.deleteAExistingUserById(id);
+		
+	}
 	
 }

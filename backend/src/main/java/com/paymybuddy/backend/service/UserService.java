@@ -38,4 +38,16 @@ public class UserService {
 		
 	}
 	
+	public void deleteAExistingUser(User user) {
+		
+		userRepository.delete(user);
+		
+	}
+
+	public void deleteAExistingUserById(int id) {
+		
+		userRepository.deleteById(id);
+		
+	}
+	
 }
