@@ -33,9 +33,15 @@ public class UserService {
 	 * @return An user
 	 */
 	public Optional<User> getOneUser(int id) {
-
-		log.info("Fetching one user in the database with id :" + id);
-		return userRepository.findById(id);
+		
+		if(userRepository.existsById(id)) {
+			
+			log.info("Fetching one user in the database with id :" + id);
+			return userRepository.findById(id);
+			
+		}
+		return null;
+		
 		
 	}
 
@@ -64,20 +70,37 @@ public class UserService {
 	/**
 	 * @param An user
 	 */
-	public void deleteAExistingUser(User user) {
+	public boolean deleteAExistingUser(User user) {
 		
 		log.info("Delete an user in the database with his entity");
-		userRepository.delete(user);
+		
+		if(userRepository.existsById(user.getId())) {
+			
+			userRepository.delete(user);
+			return true;
+			
+		}
+
+		return false;
 		
 	}
 
 	/**
 	 * @param id of a user
+	 * @return 
 	 */
-	public void deleteAExistingUserById(int id) {
+	public boolean deleteAExistingUserById(int id) {
 		
 		log.info("Delete an user in the database with id :" + id);
-		userRepository.deleteById(id);
+		
+		if(userRepository.existsById(id)) {
+			
+			userRepository.deleteById(id);
+			return true;
+			
+		}
+
+		return false;
 		
 	}
 	

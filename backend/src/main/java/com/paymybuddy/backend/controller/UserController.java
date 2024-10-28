@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,10 +34,13 @@ public class UserController {
 	 * @return A List of users
 	 */
 	@GetMapping("/users")
-	public Iterable<User> getAllUsers(){
+	public ResponseEntity<Iterable<User>> getAllUsers(){
 		
 		log.info("Trying to acces to all users in database.");
-		return userService.getAllUsers();
+		
+		Iterable<User> users = userService.getAllUsers();
+		
+		return ResponseEntity.ok(users);
 		
 	}
 	
@@ -46,10 +51,13 @@ public class UserController {
 	 * @return A User
 	 */
 	@GetMapping("/users/{id}")
-	public Optional<User> getOneUser(@PathVariable int id) {
+	public ResponseEntity<Optional<User>> getOneUser(@PathVariable int id) {
 		
 		log.info("Trying to acces to the user in the database with id : " + id + " .");
-		return userService.getOneUser(id);
+		
+		Optional<User> user = userService.getOneUser(id);
+		
+		return ResponseEntity.ok(user);
 		
 	}
 	
@@ -60,10 +68,13 @@ public class UserController {
 	 * @return A saved user
 	 */
 	@PostMapping("/users")
-	public User addNewUser(@RequestBody User user) {
+	public ResponseEntity<User> addNewUser(@RequestBody User user) {
 		
 		log.info("Trying to saving a new user in the database.");
-		return userService.addNewUser(user);
+		
+		User savedUser = userService.addNewUser(user);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
 		
 	}
 	
@@ -74,10 +85,13 @@ public class UserController {
 	 * @return The updated user
 	 */
 	@PutMapping("/users")
-	public User updateAExistingUser(@RequestBody User user) {
+	public ResponseEntity<User> updateAExistingUser(@RequestBody User user) {
 		
 		log.info("Trying to updating an existing user in database with id : "+ user.getId() + " .");
-		return userService.updateAExistingUser(user);
+		
+		User updatedUser = userService.addNewUser(user);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(updatedUser);
 		
 	}
 	
@@ -85,12 +99,19 @@ public class UserController {
 	 * Delete an user in the db with the entity
 	 * 
 	 * @param A user
+	 * @return
 	 */
 	@DeleteMapping("/users")
-	public void deleteAExistingUser(@RequestBody User user) {
+	public ResponseEntity<Void> deleteAExistingUser(@RequestBody User user) {
 		
 		log.info("Trying to delete an user with entity in database.");
-		userService.deleteAExistingUser(user);
+		boolean isDeleted = userService.deleteAExistingUser(user);
+		
+		if(isDeleted == true) {
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 		
 	}
 	
@@ -98,12 +119,20 @@ public class UserController {
 	 * Delete An user in the db depending of the id
 	 * 
 	 * @param id of the user
+	 * @return 
 	 */
 	@DeleteMapping("/users/{id}")
-	public void deleteAExistingUserById(@PathVariable int id) {
+	public ResponseEntity<Void> deleteAExistingUserById(@PathVariable int id) {
 		
-		log.info("Trying to delete an user in the database with id :" + id + ".");
-		userService.deleteAExistingUserById(id);
+		log.info("Trying to delete an user in the database with id : " + id + ".");
+		
+		boolean isDeleted = userService.deleteAExistingUserById(id);
+		
+		if(isDeleted == true) {
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 		
 	}
 	
