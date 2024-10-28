@@ -2,8 +2,6 @@ package com.paymybuddy.backend.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,7 +29,6 @@ public class Transaction {
 				}
 			)
 	@JoinColumn(name = "sender")
-	@JsonIgnoreProperties({"transactionSender", "transactionReceiver", "connections"})
 	private User sender;
 	
 	@ManyToOne(
@@ -41,7 +38,6 @@ public class Transaction {
 				}
 			)
 	@JoinColumn(name = "receiver")
-	@JsonIgnoreProperties({"transactionSender", "transactionReceiver", "connections"})
 	private User receiver;
 	
 	@Column(name = "description")
