@@ -122,5 +122,21 @@ public class TransactionService {
 		
 		return false;
 	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public boolean deleteATransactionByTheId(int id) {
+		
+		if(transactionRepository.existsById(id)) {
+			
+			transactionRepository.deleteById(id);
+			return true;
+			
+		}
+		
+		return false;
+	}
 	
 }

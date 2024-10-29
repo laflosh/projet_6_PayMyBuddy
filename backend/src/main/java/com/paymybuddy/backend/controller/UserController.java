@@ -115,10 +115,10 @@ public class UserController {
 	 * @return
 	 */
 	@DeleteMapping("/users")
-	public ResponseEntity<Void> deleteAExistingUser(@RequestBody User user) {
+	public ResponseEntity<Void> deleteAExistingUserByTheEntity(@RequestBody User user) {
 		
 		log.info("Trying to delete an user with entity in database.");
-		boolean isDeleted = userService.deleteAExistingUser(user);
+		boolean isDeleted = userService.deleteAExistingUserByTheEntity(user);
 		
 		if(isDeleted == true) {
 			return ResponseEntity.noContent().build();
@@ -135,11 +135,11 @@ public class UserController {
 	 * @return 
 	 */
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity<Void> deleteAExistingUserById(@PathVariable int id) {
+	public ResponseEntity<Void> deleteAExistingUserByTheId(@PathVariable int id) {
 		
 		log.info("Trying to delete an user in the database with id : " + id + ".");
 		
-		boolean isDeleted = userService.deleteAExistingUserById(id);
+		boolean isDeleted = userService.deleteAExistingUserByTheId(id);
 		
 		if(isDeleted == true) {
 			return ResponseEntity.noContent().build();

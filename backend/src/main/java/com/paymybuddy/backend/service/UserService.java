@@ -70,7 +70,7 @@ public class UserService {
 	/**
 	 * @param An user
 	 */
-	public boolean deleteAExistingUser(User user) {
+	public boolean deleteAExistingUserByTheEntity(User user) {
 		
 		log.info("Delete an user in the database with his entity");
 		
@@ -89,7 +89,7 @@ public class UserService {
 	 * @param id of a user
 	 * @return 
 	 */
-	public boolean deleteAExistingUserById(int id) {
+	public boolean deleteAExistingUserByTheId(int id) {
 		
 		log.info("Delete an user in the database with id :" + id);
 		

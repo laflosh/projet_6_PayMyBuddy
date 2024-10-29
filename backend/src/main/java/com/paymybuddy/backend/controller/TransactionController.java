@@ -113,4 +113,25 @@ public class TransactionController {
 		
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("/transactions/{id}")
+	public ResponseEntity<Void> deleteATransactionByTheId(@PathVariable int id){
+		
+		boolean isDeleted = transactionService.deleteATransactionByTheId(id);
+		
+		if(isDeleted == true) {
+			
+			return ResponseEntity.noContent().build();
+			
+		} else {
+			
+			return  ResponseEntity.notFound().build();
+			
+		}
+		
+	}
+	
 }
