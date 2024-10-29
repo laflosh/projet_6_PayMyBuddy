@@ -79,7 +79,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-			return ResponseEntity.status(HttpStatus.CREATED).body(null);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 		
 	}
@@ -93,11 +93,18 @@ public class UserController {
 	@PutMapping("/users")
 	public ResponseEntity<User> updateAExistingUser(@RequestBody User user) {
 		
-		log.info("Trying to updating an existing user in database with id : "+ user.getId() + " .");
-		
-		User updatedUser = userService.addNewUser(user);
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(updatedUser);
+		try {
+			log.info("Trying to updating an existing user in database with id : "+ user.getId() + " .");
+			
+			User updatedUser = userService.addNewUser(user);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(updatedUser);
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
+
 		
 	}
 	

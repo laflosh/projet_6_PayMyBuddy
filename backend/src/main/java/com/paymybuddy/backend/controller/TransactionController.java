@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,6 +73,10 @@ public class TransactionController {
 		
 	}
 	
+	/**
+	 * @param transactionDTO
+	 * @return
+	 */
 	@PutMapping("/transactions")
 	public ResponseEntity<Transaction> updateAExistingTransaction(@RequestBody TransactionDTO transactionDTO){
 		
@@ -83,6 +88,27 @@ public class TransactionController {
 			e.printStackTrace();
 			
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
+		
+	}
+	
+	/**
+	 * @param transactionDTO
+	 * @return
+	 */
+	@DeleteMapping("/transactions")
+	public ResponseEntity<Void> deleteATransactionByTheEntity(@RequestBody TransactionDTO transactionDTO){
+		
+		boolean isDeleted = transactionService.deleteATransactionByTheEntity(transactionDTO);
+		
+		if(isDeleted == true) {
+			
+			return ResponseEntity.noContent().build();
+			
+		} else {
+			
+			return ResponseEntity.notFound().build();
+			
 		}
 		
 	}

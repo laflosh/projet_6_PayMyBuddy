@@ -72,6 +72,10 @@ public class TransactionService {
 		
 	}
 
+	/**
+	 * @param transactionDTO
+	 * @return
+	 */
 	@Transactional
 	public Transaction updateAExistingTransaction(TransactionDTO transactionDTO) {
 		
@@ -88,6 +92,35 @@ public class TransactionService {
 		transaction.setAmont(transactionDTO.getAmont()); 
 		
 		return transactionRepository.save(transaction);
+	}
+
+	/**
+	 * @param transactionDTO
+	 * @return
+	 */
+	@Transactional
+	public boolean deleteATransactionByTheEntity(TransactionDTO transactionDTO) {
+
+		User sender = userRepository.findById(transactionDTO.getSenderId())
+				.orElseThrow(() -> new RuntimeException("Sender not found."));
+		User receiver = userRepository.findById(transactionDTO.getReceiverId())
+				.orElseThrow(() -> new RuntimeException("Receiver not found."));
+		
+		Transaction transaction = new Transaction();
+		transaction.setId(transactionDTO.getId());
+		transaction.setSender(sender);
+		transaction.setReceiver(receiver);
+		transaction.setDescription(transactionDTO.getDescription());
+		transaction.setAmont(transactionDTO.getAmont()); 
+		
+		if(transactionRepository.existsById(transaction.getId())) {
+			
+			transactionRepository.delete(transaction);
+			return true;
+			
+		}
+		
+		return false;
 	}
 	
 }
