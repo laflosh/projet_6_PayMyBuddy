@@ -2,7 +2,7 @@ package com.paymybuddy.backend.model.dtos;
 
 public class TransactionDTO {
 
-	private int id;
+	private Integer id;
 	
 	private int senderId;
 	
@@ -12,11 +12,11 @@ public class TransactionDTO {
 	
 	private int amont;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

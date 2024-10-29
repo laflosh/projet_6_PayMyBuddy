@@ -57,16 +57,7 @@ public class TransactionService {
 	@Transactional
 	public Transaction addANewTransaction(TransactionDTO transactionDTO) {
 		
-		User sender = userRepository.findById(transactionDTO.getSenderId())
-				.orElseThrow(() -> new RuntimeException("Sender not found."));
-		User receiver = userRepository.findById(transactionDTO.getReceiverId())
-				.orElseThrow(() -> new RuntimeException("Receiver not found."));
-		
-		Transaction transaction = new Transaction();
-		transaction.setSender(sender);
-		transaction.setReceiver(receiver);
-		transaction.setDescription(transactionDTO.getDescription());
-		transaction.setAmont(transactionDTO.getAmont()); 
+		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		return transactionRepository.save(transaction);
 		
@@ -79,17 +70,7 @@ public class TransactionService {
 	@Transactional
 	public Transaction updateAExistingTransaction(TransactionDTO transactionDTO) {
 		
-		User sender = userRepository.findById(transactionDTO.getSenderId())
-				.orElseThrow(() -> new RuntimeException("Sender not found."));
-		User receiver = userRepository.findById(transactionDTO.getReceiverId())
-				.orElseThrow(() -> new RuntimeException("Receiver not found."));
-		
-		Transaction transaction = new Transaction();
-		transaction.setId(transactionDTO.getId());
-		transaction.setSender(sender);
-		transaction.setReceiver(receiver);
-		transaction.setDescription(transactionDTO.getDescription());
-		transaction.setAmont(transactionDTO.getAmont()); 
+		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		return transactionRepository.save(transaction);
 	}
@@ -101,17 +82,7 @@ public class TransactionService {
 	@Transactional
 	public boolean deleteATransactionByTheEntity(TransactionDTO transactionDTO) {
 
-		User sender = userRepository.findById(transactionDTO.getSenderId())
-				.orElseThrow(() -> new RuntimeException("Sender not found."));
-		User receiver = userRepository.findById(transactionDTO.getReceiverId())
-				.orElseThrow(() -> new RuntimeException("Receiver not found."));
-		
-		Transaction transaction = new Transaction();
-		transaction.setId(transactionDTO.getId());
-		transaction.setSender(sender);
-		transaction.setReceiver(receiver);
-		transaction.setDescription(transactionDTO.getDescription());
-		transaction.setAmont(transactionDTO.getAmont()); 
+		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		if(transactionRepository.existsById(transaction.getId())) {
 			
@@ -137,6 +108,28 @@ public class TransactionService {
 		}
 		
 		return false;
+	}
+	
+	@Transactional
+	Transaction transferTransactionDTOToTransaction(TransactionDTO transactionDTO) {
+		
+		User sender = userRepository.findById(transactionDTO.getSenderId())
+				.orElseThrow(() -> new RuntimeException("Sender not found."));
+		User receiver = userRepository.findById(transactionDTO.getReceiverId())
+				.orElseThrow(() -> new RuntimeException("Receiver not found."));
+		
+		Transaction transaction = new Transaction();
+		
+		if(transactionDTO.getId() != null) {
+			transaction.setId(transactionDTO.getId());
+		}
+		transaction.setSender(sender);
+		transaction.setReceiver(receiver);
+		transaction.setDescription(transactionDTO.getDescription());
+		transaction.setAmont(transactionDTO.getAmont()); 
+		
+		return transaction;
+		
 	}
 	
 }
