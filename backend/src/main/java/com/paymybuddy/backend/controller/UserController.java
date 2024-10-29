@@ -70,11 +70,17 @@ public class UserController {
 	@PostMapping("/users")
 	public ResponseEntity<User> addNewUser(@RequestBody User user) {
 		
-		log.info("Trying to saving a new user in the database.");
-		
-		User savedUser = userService.addNewUser(user);
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+		try {
+			log.info("Trying to saving a new user in the database.");
+			
+			User savedUser = userService.addNewUser(user);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(null);
+		}
 		
 	}
 	

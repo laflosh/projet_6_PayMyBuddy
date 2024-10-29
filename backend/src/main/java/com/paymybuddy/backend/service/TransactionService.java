@@ -8,12 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.paymybuddy.backend.model.Transaction;
+import com.paymybuddy.backend.model.User;
+import com.paymybuddy.backend.model.dtos.TransactionDTO;
 import com.paymybuddy.backend.repository.TransactionRepository;
+import com.paymybuddy.backend.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class TransactionService {
 
 	private static Logger log = LogManager.getLogger(TransactionService.class);
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	TransactionRepository transactionRepository;
@@ -40,6 +48,28 @@ public class TransactionService {
 		}
 		
 		return null;
+	}
+
+	/**
+	 * @param transactionDTO
+	 * @return
+	 */
+	@Transactional
+	public Transaction addANewTransaction(TransactionDTO transactionDTO) {
+		
+		User sender = userRepository.findById(transactionDTO.getSenderId())
+				.orElseThrow(() -> new RuntimeException("Sender not found."));
+		User receiver = userRepository.findById(transactionDTO.getReceiverId())
+				.orElseThrow(() -> new RuntimeException("Receiver not found."));
+		
+		Transaction transaction = new Transaction();
+		transaction.setSender(sender);
+		transaction.setReceiver(receiver);
+		transaction.setDescription(transactionDTO.getDescription());
+		transaction.setAmont(transactionDTO.getAmont()); 
+		
+		return transactionRepository.save(transaction);
+		
 	}
 	
 }
