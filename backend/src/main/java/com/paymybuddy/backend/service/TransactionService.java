@@ -1,5 +1,7 @@
 package com.paymybuddy.backend.service;
 
+import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,28 @@ public class TransactionService {
 	@Autowired
 	TransactionRepository transactionRepository;
 
+	/**
+	 * @return
+	 */
 	public Iterable<Transaction> getAllTransactions() {
 		
 		return transactionRepository.findAll();
 		
+	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Optional<Transaction> getOneTransactionById(int id) {
+		
+		if(transactionRepository.existsById(id)) {
+			
+			return transactionRepository.findById(id);
+			
+		}
+		
+		return null;
 	}
 	
 }

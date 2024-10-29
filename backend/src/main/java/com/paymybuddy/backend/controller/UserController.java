@@ -51,11 +51,11 @@ public class UserController {
 	 * @return A User
 	 */
 	@GetMapping("/users/{id}")
-	public ResponseEntity<Optional<User>> getOneUser(@PathVariable int id) {
+	public ResponseEntity<Optional<User>> getOneUserById(@PathVariable int id) {
 		
 		log.info("Trying to acces to the user in the database with id : " + id + " .");
 		
-		Optional<User> user = userService.getOneUser(id);
+		Optional<User> user = userService.getOneUserById(id);
 		
 		return ResponseEntity.ok(user);
 		

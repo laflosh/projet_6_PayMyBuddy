@@ -32,7 +32,7 @@ public class UserService {
 	 * @param id of the user
 	 * @return An user
 	 */
-	public Optional<User> getOneUser(int id) {
+	public Optional<User> getOneUserById(int id) {
 		
 		if(userRepository.existsById(id)) {
 			
