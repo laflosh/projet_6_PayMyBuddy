@@ -71,5 +71,23 @@ public class TransactionService {
 		return transactionRepository.save(transaction);
 		
 	}
+
+	@Transactional
+	public Transaction updateAExistingTransaction(TransactionDTO transactionDTO) {
+		
+		User sender = userRepository.findById(transactionDTO.getSenderId())
+				.orElseThrow(() -> new RuntimeException("Sender not found."));
+		User receiver = userRepository.findById(transactionDTO.getReceiverId())
+				.orElseThrow(() -> new RuntimeException("Receiver not found."));
+		
+		Transaction transaction = new Transaction();
+		transaction.setId(transactionDTO.getId());
+		transaction.setSender(sender);
+		transaction.setReceiver(receiver);
+		transaction.setDescription(transactionDTO.getDescription());
+		transaction.setAmont(transactionDTO.getAmont()); 
+		
+		return transactionRepository.save(transaction);
+	}
 	
 }

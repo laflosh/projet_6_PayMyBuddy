@@ -2,6 +2,8 @@ package com.paymybuddy.backend.model.dtos;
 
 public class TransactionDTO {
 
+	private int id;
+	
 	private int senderId;
 	
 	private int receiverId;
@@ -9,6 +11,14 @@ public class TransactionDTO {
 	private String description;
 	
 	private int amont;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getSenderId() {
 		return senderId;
