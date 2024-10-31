@@ -1,5 +1,7 @@
 package com.paymybuddy.backend.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paymybuddy.backend.model.dtos.SenderTransactionDTO;
 import com.paymybuddy.backend.model.Transaction;
 import com.paymybuddy.backend.model.User;
 import com.paymybuddy.backend.model.dtos.TransactionDTO;
@@ -122,8 +125,28 @@ public class TransactionService {
 		return false;
 	}
 	
+	@Transactional
+	public List<SenderTransactionDTO> getSenderTransactionsForAnUser(int id) {
+		
+		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
+		
+		List<SenderTransactionDTO> senderTransactionList = new ArrayList<SenderTransactionDTO>();
+		
+		user.getTransactionSender().forEach(transaction ->{
+			SenderTransactionDTO senderTransactionDTO = new SenderTransactionDTO();
+			senderTransactionDTO.setTransactionId(transaction.getId());
+			senderTransactionDTO.setReceiver(transaction.getReceiver());
+			senderTransactionDTO.setDescription(transaction.getDescription());
+			senderTransactionDTO.setAmont(transaction.getAmont());
+			
+			senderTransactionList.add(senderTransactionDTO);
+		});
+		
+		return senderTransactionList;
+	}
+	
 	/**
-	 * Method for datat transfer transactionDTO to a new entity transaction
+	 * Method for data transfer transactionDTO to a new entity transaction
 	 * 
 	 * @param transactionDTO
 	 * @return A transaction

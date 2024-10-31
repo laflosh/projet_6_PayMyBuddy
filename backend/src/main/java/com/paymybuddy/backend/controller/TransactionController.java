@@ -1,5 +1,6 @@
 package com.paymybuddy.backend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paymybuddy.backend.model.Transaction;
+import com.paymybuddy.backend.model.dtos.SenderTransactionDTO;
 import com.paymybuddy.backend.model.dtos.TransactionDTO;
 import com.paymybuddy.backend.service.TransactionService;
 
@@ -155,6 +157,15 @@ public class TransactionController {
 			return  ResponseEntity.notFound().build();
 			
 		}
+		
+	}
+	
+	@GetMapping("/transactions/sender/{id}")
+	public ResponseEntity<List<SenderTransactionDTO>> getSenderTransactionsForAnUser(@PathVariable int id){
+		
+		List<SenderTransactionDTO> senderTransactions = transactionService.getSenderTransactionsForAnUser(id);
+		
+		return ResponseEntity.ok().body(senderTransactions);
 		
 	}
 	
