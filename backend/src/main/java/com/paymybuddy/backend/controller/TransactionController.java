@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paymybuddy.backend.model.Transaction;
+import com.paymybuddy.backend.model.dtos.ReceiverTransactionDTO;
 import com.paymybuddy.backend.model.dtos.SenderTransactionDTO;
 import com.paymybuddy.backend.model.dtos.TransactionDTO;
 import com.paymybuddy.backend.service.TransactionService;
@@ -160,12 +161,29 @@ public class TransactionController {
 		
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/transactions/sender/{id}")
 	public ResponseEntity<List<SenderTransactionDTO>> getSenderTransactionsForAnUser(@PathVariable int id){
 		
 		List<SenderTransactionDTO> senderTransactions = transactionService.getSenderTransactionsForAnUser(id);
 		
 		return ResponseEntity.ok().body(senderTransactions);
+		
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/transactions/receiver/{id}")
+	public ResponseEntity<List<ReceiverTransactionDTO>> getReceiverTransactionsOfAnUser(@PathVariable int id){
+		
+		List<ReceiverTransactionDTO> receiverTransactions = transactionService.getReceiverTransactionsOfAnUser(id);
+		
+		return ResponseEntity.ok().body(receiverTransactions);
 		
 	}
 	

@@ -5320,3 +5320,112 @@ java.lang.RuntimeException: Sender not found.
 2024-10-31T18:29:04.229+0100 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-10-31T18:29:04.229+0100 INFO HikariPool-2 - Shutdown initiated...
 2024-10-31T18:29:04.232+0100 INFO HikariPool-2 - Shutdown completed.
+2024-10-31T19:19:11.072+0100 INFO Could not detect default configuration classes for test class [com.paymybuddy.backend.user.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-10-31T19:19:11.177+0100 INFO Found @SpringBootConfiguration com.paymybuddy.backend.BackendApplication for test class com.paymybuddy.backend.user.UserControllerTest
+2024-10-31T19:19:11.542+0100 INFO Starting UserControllerTest using Java 17.0.12 with PID 23708 (started by l_flo in C:\Workspace\Openclassrooms\projet_6\projey_6_PayMyBuddy\backend)
+2024-10-31T19:19:11.545+0100 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-31T19:19:12.193+0100 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-31T19:19:12.244+0100 INFO Finished Spring Data repository scanning in 43 ms. Found 2 JPA repository interfaces.
+2024-10-31T19:19:12.694+0100 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-31T19:19:12.741+0100 INFO HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-10-31T19:19:12.764+0100 INFO HHH000026: Second-level cache disabled
+2024-10-31T19:19:13.167+0100 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-31T19:19:13.197+0100 INFO HikariPool-1 - Starting...
+2024-10-31T19:19:13.319+0100 INFO HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5a1c7619
+2024-10-31T19:19:13.321+0100 INFO HikariPool-1 - Start completed.
+2024-10-31T19:19:13.339+0100 WARN HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-31T19:19:13.341+0100 WARN HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-10-31T19:19:14.022+0100 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-31T19:19:14.130+0100 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-31T19:19:17.217+0100 INFO Initalizing API PayMyBuddy
+2024-10-31T19:19:17.644+0100 INFO Starting BackendApplication using Java 17.0.12 with PID 46336 (C:\Workspace\Openclassrooms\projet_6\projey_6_PayMyBuddy\backend\target\classes started by l_flo in C:\Workspace\Openclassrooms\projet_6\projey_6_PayMyBuddy\backend)
+2024-10-31T19:19:17.651+0100 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-31T19:19:18.207+0100 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-31T19:19:18.266+0100 INFO Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+2024-10-31T19:19:19.022+0100 INFO Tomcat initialized with port 8081 (http)
+2024-10-31T19:19:19.037+0100 INFO Initializing ProtocolHandler ["http-nio-8081"]
+2024-10-31T19:19:19.042+0100 INFO Starting service [Tomcat]
+2024-10-31T19:19:19.042+0100 INFO Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-10-31T19:19:19.109+0100 INFO Initializing Spring embedded WebApplicationContext
+2024-10-31T19:19:19.110+0100 INFO Root WebApplicationContext: initialization completed in 1416 ms
+2024-10-31T19:19:19.484+0100 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-31T19:19:19.628+0100 INFO HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-10-31T19:19:19.663+0100 INFO HHH000026: Second-level cache disabled
+2024-10-31T19:19:19.912+0100 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-31T19:19:19.966+0100 INFO HikariPool-1 - Starting...
+2024-10-31T19:19:20.087+0100 INFO HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e3c36d
+2024-10-31T19:19:20.089+0100 INFO HikariPool-1 - Start completed.
+2024-10-31T19:19:20.107+0100 WARN HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-31T19:19:20.108+0100 WARN HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-10-31T19:19:20.780+0100 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-31T19:19:20.886+0100 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-31T19:19:21.302+0100 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-31T19:19:21.404+0100 INFO Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-10-31T19:19:22.202+0100 INFO Starting ProtocolHandler ["http-nio-8081"]
+2024-10-31T19:19:22.269+0100 INFO Tomcat started on port 8081 (http) with context path '/'
+2024-10-31T19:19:22.287+0100 INFO Started BackendApplication in 4.988 seconds (process running for 5.799)
+2024-10-31T19:19:34.826+0100 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-31T19:19:34.826+0100 INFO Initializing Servlet 'dispatcherServlet'
+2024-10-31T19:19:34.828+0100 INFO Completed initialization in 2 ms
+2024-10-31T19:19:34.987+0100 INFO Trying to acces to all transactions in database
+2024-10-31T19:19:34.987+0100 INFO Fetching all the transaction int the database
+2024-10-31T19:33:32.713+0100 INFO Initalizing API PayMyBuddy
+2024-10-31T19:33:33.132+0100 INFO Starting BackendApplication using Java 17.0.12 with PID 14408 (C:\Workspace\Openclassrooms\projet_6\projey_6_PayMyBuddy\backend\target\classes started by l_flo in C:\Workspace\Openclassrooms\projet_6\projey_6_PayMyBuddy\backend)
+2024-10-31T19:33:33.137+0100 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-31T19:33:33.911+0100 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-31T19:33:33.998+0100 INFO Finished Spring Data repository scanning in 75 ms. Found 2 JPA repository interfaces.
+2024-10-31T19:33:34.837+0100 INFO Tomcat initialized with port 8081 (http)
+2024-10-31T19:33:34.846+0100 INFO Initializing ProtocolHandler ["http-nio-8081"]
+2024-10-31T19:33:34.850+0100 INFO Starting service [Tomcat]
+2024-10-31T19:33:34.850+0100 INFO Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-10-31T19:33:34.901+0100 INFO Initializing Spring embedded WebApplicationContext
+2024-10-31T19:33:34.903+0100 INFO Root WebApplicationContext: initialization completed in 1717 ms
+2024-10-31T19:33:35.345+0100 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-31T19:33:35.471+0100 INFO HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-10-31T19:33:35.502+0100 INFO HHH000026: Second-level cache disabled
+2024-10-31T19:33:35.766+0100 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-31T19:33:35.829+0100 INFO HikariPool-1 - Starting...
+2024-10-31T19:33:35.996+0100 INFO HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42238078
+2024-10-31T19:33:35.998+0100 INFO HikariPool-1 - Start completed.
+2024-10-31T19:33:36.019+0100 WARN HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-31T19:33:36.019+0100 WARN HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-10-31T19:33:36.686+0100 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-31T19:33:36.774+0100 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-31T19:33:37.226+0100 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-31T19:33:37.358+0100 INFO Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-10-31T19:33:38.132+0100 INFO Starting ProtocolHandler ["http-nio-8081"]
+2024-10-31T19:33:38.185+0100 INFO Tomcat started on port 8081 (http) with context path '/'
+2024-10-31T19:33:38.201+0100 INFO Started BackendApplication in 5.404 seconds (process running for 6.223)
+2024-10-31T19:34:00.499+0100 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-31T19:34:00.499+0100 INFO Initializing Servlet 'dispatcherServlet'
+2024-10-31T19:34:00.501+0100 INFO Completed initialization in 2 ms
+2024-10-31T19:48:18.996+0100 INFO Initalizing API PayMyBuddy
+2024-10-31T19:48:19.433+0100 INFO Starting BackendApplication using Java 17.0.12 with PID 18256 (C:\Workspace\Openclassrooms\projet_6\projey_6_PayMyBuddy\backend\target\classes started by l_flo in C:\Workspace\Openclassrooms\projet_6\projey_6_PayMyBuddy\backend)
+2024-10-31T19:48:19.437+0100 INFO No active profile set, falling back to 1 default profile: "default"
+2024-10-31T19:48:20.139+0100 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-31T19:48:20.207+0100 INFO Finished Spring Data repository scanning in 58 ms. Found 2 JPA repository interfaces.
+2024-10-31T19:48:21.063+0100 INFO Tomcat initialized with port 8081 (http)
+2024-10-31T19:48:21.089+0100 INFO Initializing ProtocolHandler ["http-nio-8081"]
+2024-10-31T19:48:21.093+0100 INFO Starting service [Tomcat]
+2024-10-31T19:48:21.093+0100 INFO Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-10-31T19:48:21.157+0100 INFO Initializing Spring embedded WebApplicationContext
+2024-10-31T19:48:21.159+0100 INFO Root WebApplicationContext: initialization completed in 1672 ms
+2024-10-31T19:48:21.483+0100 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-31T19:48:21.554+0100 INFO HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-10-31T19:48:21.582+0100 INFO HHH000026: Second-level cache disabled
+2024-10-31T19:48:21.858+0100 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-31T19:48:21.932+0100 INFO HikariPool-1 - Starting...
+2024-10-31T19:48:22.077+0100 INFO HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@799fb45e
+2024-10-31T19:48:22.078+0100 INFO HikariPool-1 - Start completed.
+2024-10-31T19:48:22.101+0100 WARN HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-31T19:48:22.103+0100 WARN HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-10-31T19:48:22.841+0100 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-31T19:48:22.959+0100 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-31T19:48:23.569+0100 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-31T19:48:23.709+0100 INFO Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2024-10-31T19:48:24.562+0100 INFO Starting ProtocolHandler ["http-nio-8081"]
+2024-10-31T19:48:24.607+0100 INFO Tomcat started on port 8081 (http) with context path '/'
+2024-10-31T19:48:24.617+0100 INFO Started BackendApplication in 5.535 seconds (process running for 6.391)
+2024-10-31T19:48:49.981+0100 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-31T19:48:49.981+0100 INFO Initializing Servlet 'dispatcherServlet'
+2024-10-31T19:48:49.982+0100 INFO Completed initialization in 1 ms

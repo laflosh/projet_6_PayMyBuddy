@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paymybuddy.backend.model.dtos.ReceiverTransactionDTO;
 import com.paymybuddy.backend.model.dtos.SenderTransactionDTO;
 import com.paymybuddy.backend.model.Transaction;
 import com.paymybuddy.backend.model.User;
@@ -125,12 +126,16 @@ public class TransactionService {
 		return false;
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@Transactional
 	public List<SenderTransactionDTO> getSenderTransactionsForAnUser(int id) {
 		
 		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
 		
-		List<SenderTransactionDTO> senderTransactionList = new ArrayList<SenderTransactionDTO>();
+		List<SenderTransactionDTO> senderTransactionsList = new ArrayList<SenderTransactionDTO>();
 		
 		user.getTransactionSender().forEach(transaction ->{
 			SenderTransactionDTO senderTransactionDTO = new SenderTransactionDTO();
@@ -139,10 +144,33 @@ public class TransactionService {
 			senderTransactionDTO.setDescription(transaction.getDescription());
 			senderTransactionDTO.setAmont(transaction.getAmont());
 			
-			senderTransactionList.add(senderTransactionDTO);
+			senderTransactionsList.add(senderTransactionDTO);
 		});
 		
-		return senderTransactionList;
+		return senderTransactionsList;
+	}
+	
+	/**
+	 * @param id
+	 * @return
+	 */
+	public List<ReceiverTransactionDTO> getReceiverTransactionsOfAnUser(int id) {
+		
+		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
+		
+		List<ReceiverTransactionDTO> receiverTransactionsList = new ArrayList<ReceiverTransactionDTO>();
+		
+		user.getTransactionReceiver().forEach(transaction -> {
+			ReceiverTransactionDTO receiverTransactionDTO = new ReceiverTransactionDTO();
+			receiverTransactionDTO.setTransactionId(transaction.getId());
+			receiverTransactionDTO.setSender(transaction.getSender());
+			receiverTransactionDTO.setDescription(transaction.getDescription());
+			receiverTransactionDTO.setAmont(transaction.getAmont());
+			
+			receiverTransactionsList.add(receiverTransactionDTO);
+		});
+		
+		return receiverTransactionsList;
 	}
 	
 	/**
