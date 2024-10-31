@@ -8,4 +8,6 @@ import com.paymybuddy.backend.model.Transaction;
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, Integer>{
 
+	Transaction findByDescription(String string);
+
 }

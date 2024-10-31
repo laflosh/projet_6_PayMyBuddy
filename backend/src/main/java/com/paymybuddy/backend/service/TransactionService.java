@@ -110,8 +110,12 @@ public class TransactionService {
 		return false;
 	}
 	
+	/**
+	 * @param transactionDTO
+	 * @return
+	 */
 	@Transactional
-	Transaction transferTransactionDTOToTransaction(TransactionDTO transactionDTO) {
+	public Transaction transferTransactionDTOToTransaction(TransactionDTO transactionDTO) {
 		
 		User sender = userRepository.findById(transactionDTO.getSenderId())
 				.orElseThrow(() -> new RuntimeException("Sender not found."));
