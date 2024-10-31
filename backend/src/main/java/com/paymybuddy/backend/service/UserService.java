@@ -1,5 +1,7 @@
 package com.paymybuddy.backend.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -102,6 +104,20 @@ public class UserService {
 
 		return false;
 		
+	}
+
+	public List<User> getConnectionsOfAnUser(int id) {
+		
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("User not found"));
+		
+		List<User> connections = new ArrayList<User>();
+		
+		user.getConnections().forEach(connection -> {
+			connections.add(connection);
+		});
+		
+		return connections;
 	}
 	
 }

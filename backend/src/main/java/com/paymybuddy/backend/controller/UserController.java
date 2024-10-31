@@ -1,5 +1,6 @@
 package com.paymybuddy.backend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -146,6 +147,15 @@ public class UserController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+		
+	}
+	
+	@GetMapping("/users/connections/{id}")
+	public ResponseEntity<List<User>> getConnectionsOfAnUser(@PathVariable int id) {
+		
+		List<User> connections = userService.getConnectionsOfAnUser(id);
+		
+		return ResponseEntity.ok(connections);
 		
 	}
 	
