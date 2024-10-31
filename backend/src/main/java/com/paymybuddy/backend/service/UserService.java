@@ -109,10 +109,12 @@ public class UserService {
 	}
 
 	/**
-	 * @param id
-	 * @return
+	 * @param The user id
+	 * @return The connection list of user
 	 */
 	public List<User> getConnectionsOfAnUser(int id) {
+		
+		log.info("Fetching all the connections of an user with id : " + id + " .");
 		
 		//Fetching the user
 		User user = userRepository.findById(id)
@@ -129,12 +131,14 @@ public class UserService {
 	}
 
 	/**
-	 * @param id
-	 * @param emailUserConnection
-	 * @return
+	 * @param The user id
+	 * @param The user emailUserConnection for search
+	 * @return The new List of connection
 	 */
 	@Transactional
 	public List<User> addForAnUserANewConnectionWithEmail(int id, String email) {
+		
+		log.info("Add a new connection with the email address : " + email + " of an user with id :" + id +" .");
 		
 		//Fetching user and user connection
 		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
@@ -154,11 +158,13 @@ public class UserService {
 	}
 
 	/**
-	 * @param id
-	 * @param connectionId
+	 * @param The user id
+	 * @param The user connectionId
 	 * @return
 	 */
 	public List<User> deleteForAnUserAConnectionInHisList(int id, int connectionId) {
+		
+		log.info("Delete the connection with id : " + connectionId + " of an user with id : " + id + " .");
 		
 		//Fetching user 
 		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));

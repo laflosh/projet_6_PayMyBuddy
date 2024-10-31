@@ -151,11 +151,15 @@ public class UserController {
 	}
 	
 	/**
-	 * @param id
-	 * @return
+	 * Getting the list of user's connection in the database
+	 * 
+	 * @param The user id
+	 * @return A List of users
 	 */
 	@GetMapping("/users/{id}/connections")
 	public ResponseEntity<List<User>> getConnectionsOfAnUser(@PathVariable int id) {
+		
+		log.info("Trying to fetching all the connections of an user with id : " + id + " .");
 		
 		List<User> connections = userService.getConnectionsOfAnUser(id);
 		
@@ -164,12 +168,16 @@ public class UserController {
 	}
 	
 	/**
-	 * @param id
-	 * @param emailUserConnection
-	 * @return
+	 * Adding a new connection in the user's connections List of a user
+	 * 
+	 * @param The user id
+	 * @param the emailUserConnection for search by email address
+	 * @return The new connections List
 	 */
 	@PostMapping("/users/{id}/connections")
 	public ResponseEntity<List<User>> addForAnUserANewConnectionWithEmail(@RequestBody String email, @PathVariable int id){
+		
+		log.info("Trying to add a new connection with the email address : " + email + " of an user with id :" + id +" .");
 		
 		try {
 			List<User> newConnectionsList = userService.addForAnUserANewConnectionWithEmail(id, email);
@@ -184,12 +192,16 @@ public class UserController {
 	}
 	
 	/**
-	 * @param id
-	 * @param connectionId
+	 * Delete a connection in the user'sconnection list of a user
+	 * 
+	 * @param The user id
+	 * @param The user connectionId
 	 * @return
 	 */
 	@DeleteMapping("/users/{id}/connections/{connectionId}")
 	public ResponseEntity<List<User>> deleteForAnUserAConnectionInHisList(@PathVariable int id,@PathVariable int connectionId){
+		
+		log.info("Trying to delete the connection with id : " + connectionId + " of an user with id : " + id + " .");
 		
 		try {
 			List<User> newConnectionsList = userService.deleteForAnUserAConnectionInHisList(id, connectionId);
