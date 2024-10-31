@@ -71,7 +71,7 @@ public class UserController {
 	public ResponseEntity<User> addNewUser(@RequestBody User user) {
 		
 		try {
-			log.info("Trying to saving a new user in the database.");
+			log.info("Trying to save a new user in the database.");
 			
 			User savedUser = userService.addNewUser(user);
 			

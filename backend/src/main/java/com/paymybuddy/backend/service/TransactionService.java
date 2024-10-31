@@ -27,19 +27,23 @@ public class TransactionService {
 	TransactionRepository transactionRepository;
 
 	/**
-	 * @return
+	 * @return A List of transactions
 	 */
 	public Iterable<Transaction> getAllTransactions() {
+		
+		log.info("Fetching all the transaction int the database");
 		
 		return transactionRepository.findAll();
 		
 	}
 
 	/**
-	 * @param id
-	 * @return
+	 * @param The id of the transaction
+	 * @return A transaction
 	 */
 	public Optional<Transaction> getOneTransactionById(int id) {
+		
+		log.info("Fetching one transaction in the database with id : " + id +" .");
 		
 		if(transactionRepository.existsById(id)) {
 			
@@ -51,12 +55,14 @@ public class TransactionService {
 	}
 
 	/**
-	 * @param transactionDTO
-	 * @return
+	 * @param The new transactionDTO
+	 * @return The saved transaction
 	 */
 	@Transactional
 	public Transaction addANewTransaction(TransactionDTO transactionDTO) {
 		
+		log.info("Saving a transaction in the database");
+		
 		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		return transactionRepository.save(transaction);
@@ -64,24 +70,28 @@ public class TransactionService {
 	}
 
 	/**
-	 * @param transactionDTO
-	 * @return
+	 * @param The modify transactionDTO
+	 * @return The updated transaction
 	 */
 	@Transactional
 	public Transaction updateAExistingTransaction(TransactionDTO transactionDTO) {
 		
+		log.info("Updating a transaction in the database with id :" + transactionDTO.getId() + " .");
+		
 		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		return transactionRepository.save(transaction);
 	}
 
 	/**
-	 * @param transactionDTO
+	 * @param the transactionDTO
 	 * @return
 	 */
 	@Transactional
 	public boolean deleteATransactionByTheEntity(TransactionDTO transactionDTO) {
 
+		log.info("Delete a existing transaction in the database with the entity.");
+		
 		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		if(transactionRepository.existsById(transaction.getId())) {
@@ -95,10 +105,12 @@ public class TransactionService {
 	}
 
 	/**
-	 * @param id
+	 * @param The id of the transaction 
 	 * @return
 	 */
 	public boolean deleteATransactionByTheId(int id) {
+		
+		log.info("Delete a existing transaction in the database with id :" + id + " .");
 		
 		if(transactionRepository.existsById(id)) {
 			
@@ -111,11 +123,15 @@ public class TransactionService {
 	}
 	
 	/**
+	 * Method for datat transfer transactionDTO to a new entity transaction
+	 * 
 	 * @param transactionDTO
-	 * @return
+	 * @return A transaction
 	 */
 	@Transactional
 	public Transaction transferTransactionDTOToTransaction(TransactionDTO transactionDTO) {
+		
+		log.info("Data transfer transactionDTO to a new entity Transaction");
 		
 		User sender = userRepository.findById(transactionDTO.getSenderId())
 				.orElseThrow(() -> new RuntimeException("Sender not found."));

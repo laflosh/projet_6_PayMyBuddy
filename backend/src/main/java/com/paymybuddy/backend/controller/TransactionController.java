@@ -30,10 +30,14 @@ public class TransactionController {
 	TransactionService transactionService;
 	
 	/**
-	 * @return
+	 * Fetching all transactions in the database
+	 * 
+	 * @return A List of transactions
 	 */
 	@GetMapping("/transactions")
 	public ResponseEntity<Iterable<Transaction>> getAllTransactions(){
+		
+		log.info("Trying to acces to all transactions in database");
 		
 		Iterable<Transaction> transactions = transactionService.getAllTransactions();
 		
@@ -42,11 +46,15 @@ public class TransactionController {
 	}
 	
 	/**
-	 * @param id
-	 * @return
+	 * Fetching one transaction by the id
+	 * 
+	 * @param id of the transaction
+	 * @return A transaction
 	 */
 	@GetMapping("/transactions/{id}")
 	public ResponseEntity<Optional<Transaction>> getOneTransactionById(@PathVariable int id){
+		
+		log.info("Trying to acces to one transaction with id : " + id + " .");
 		
 		Optional<Transaction> transaction = transactionService.getOneTransactionById(id);
 		
@@ -55,13 +63,17 @@ public class TransactionController {
 	}
 	
 	/**
-	 * @param transactionDTO
-	 * @return
+	 * Saving a new transaction in the database
+	 * 
+	 * @param A new transactionDTO
+	 * @return The saved transaction
 	 */
 	@PostMapping("/transactions")
 	public ResponseEntity<Transaction> addANewTransaction(@RequestBody TransactionDTO transactionDTO){
 		
 		try {
+			log.info("Trying to save a new transaction in the database.");
+			
 			Transaction savedTransaction = transactionService.addANewTransaction(transactionDTO);
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(savedTransaction);
@@ -74,13 +86,17 @@ public class TransactionController {
 	}
 	
 	/**
-	 * @param transactionDTO
-	 * @return
+	 * Updating a transaction existing in the database.
+	 * 
+	 * @param The modify transactionDTO
+	 * @return The updated transaction
 	 */
 	@PutMapping("/transactions")
 	public ResponseEntity<Transaction> updateAExistingTransaction(@RequestBody TransactionDTO transactionDTO){
 		
 		try {
+			log.info("Trying to update a transaction in the databse with id :" + transactionDTO.getId() + " ."); 
+			
 			Transaction updatedTransaction = transactionService.updateAExistingTransaction(transactionDTO);
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(updatedTransaction);
@@ -93,11 +109,15 @@ public class TransactionController {
 	}
 	
 	/**
-	 * @param transactionDTO
+	 * Delete an existing transaction in the database by her entity 
+	 * 
+	 * @param A transactionDTO
 	 * @return
 	 */
 	@DeleteMapping("/transactions")
 	public ResponseEntity<Void> deleteATransactionByTheEntity(@RequestBody TransactionDTO transactionDTO){
+		
+		log.info("Trying to delete a transaction in the database with her entity");
 		
 		boolean isDeleted = transactionService.deleteATransactionByTheEntity(transactionDTO);
 		
@@ -114,11 +134,15 @@ public class TransactionController {
 	}
 	
 	/**
-	 * @param id
+	 * Delete an existing transaction in the database by the id
+	 * 
+	 * @param The transaction id
 	 * @return
 	 */
 	@DeleteMapping("/transactions/{id}")
 	public ResponseEntity<Void> deleteATransactionByTheId(@PathVariable int id){
+		
+		log.info("Trying to delete a transaction in the database with id : " + id + " .");
 		
 		boolean isDeleted = transactionService.deleteATransactionByTheId(id);
 		
