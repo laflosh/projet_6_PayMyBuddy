@@ -150,12 +150,36 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/users/connections/{id}")
 	public ResponseEntity<List<User>> getConnectionsOfAnUser(@PathVariable int id) {
 		
 		List<User> connections = userService.getConnectionsOfAnUser(id);
 		
 		return ResponseEntity.ok(connections);
+		
+	}
+	
+	/**
+	 * @param id
+	 * @param emailUserConnection
+	 * @return
+	 */
+	@PostMapping("/users/connections/{id}")
+	public ResponseEntity<List<User>> addForAnUserANewConnectionWithEmail(@RequestBody String email, @PathVariable int id){
+		
+		try {
+			List<User> newConnectionsList = userService.addForAnUserANewConnectionWithEmail(id, email);
+			
+			return ResponseEntity.status(HttpStatus.CREATED).body(newConnectionsList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return ResponseEntity.badRequest().build();
+		}
 		
 	}
 	

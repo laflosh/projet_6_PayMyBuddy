@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.paymybuddy.backend.model.User;
 import com.paymybuddy.backend.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserService {
 
@@ -106,18 +108,49 @@ public class UserService {
 		
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public List<User> getConnectionsOfAnUser(int id) {
 		
+		//Fetching the user
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("User not found"));
 		
 		List<User> connections = new ArrayList<User>();
 		
+		//Add user's connections in a List
 		user.getConnections().forEach(connection -> {
 			connections.add(connection);
 		});
 		
 		return connections;
+	}
+
+	/**
+	 * @param id
+	 * @param emailUserConnection
+	 * @return
+	 */
+	@Transactional
+	public List<User> addForAnUserANewConnectionWithEmail(int id, String email) {
+		
+		//Fetching user and user connection
+		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		User connection = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+		
+		if(user.getConnections().contains(connection)) {
+			throw new IllegalArgumentException("Connection already exists.");
+		}
+		
+		//Add connection in the user's connections List
+		user.addConnections(connection);
+		
+		//Save the entity
+		userRepository.save(user);
+		
+		return getConnectionsOfAnUser(id);
 	}
 	
 }
