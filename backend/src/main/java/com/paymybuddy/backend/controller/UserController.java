@@ -154,7 +154,7 @@ public class UserController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/users/connections/{id}")
+	@GetMapping("/users/{id}/connections")
 	public ResponseEntity<List<User>> getConnectionsOfAnUser(@PathVariable int id) {
 		
 		List<User> connections = userService.getConnectionsOfAnUser(id);
@@ -168,7 +168,7 @@ public class UserController {
 	 * @param emailUserConnection
 	 * @return
 	 */
-	@PostMapping("/users/connections/{id}")
+	@PostMapping("/users/{id}/connections")
 	public ResponseEntity<List<User>> addForAnUserANewConnectionWithEmail(@RequestBody String email, @PathVariable int id){
 		
 		try {
@@ -176,6 +176,26 @@ public class UserController {
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(newConnectionsList);
 		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return ResponseEntity.badRequest().build();
+		}
+		
+	}
+	
+	/**
+	 * @param id
+	 * @param connectionId
+	 * @return
+	 */
+	@DeleteMapping("/users/{id}/connections/{connectionId}")
+	public ResponseEntity<List<User>> deleteForAnUserAConnectionInHisList(@PathVariable int id,@PathVariable int connectionId){
+		
+		try {
+			List<User> newConnectionsList = userService.deleteForAnUserAConnectionInHisList(id, connectionId);
+			
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(newConnectionsList);
+		} catch(Exception e) {
 			e.printStackTrace();
 			
 			return ResponseEntity.badRequest().build();

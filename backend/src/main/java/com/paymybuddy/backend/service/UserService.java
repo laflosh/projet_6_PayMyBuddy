@@ -152,5 +152,34 @@ public class UserService {
 		
 		return getConnectionsOfAnUser(id);
 	}
+
+	/**
+	 * @param id
+	 * @param connectionId
+	 * @return
+	 */
+	public List<User> deleteForAnUserAConnectionInHisList(int id, int connectionId) {
+		
+		//Fetching user 
+		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		
+		User connectionToRemove = null;
+		//Removing connection
+		for(User connection : user.getConnections()){
+			
+			if(connection.getId() == connectionId) {
+				
+				connectionToRemove = connection;
+				
+			}
+			
+		};
+		user.removeConnection(connectionToRemove);
+		
+		//Save the entity
+		userRepository.save(user);
+		
+		return getConnectionsOfAnUser(id);
+	}
 	
 }
