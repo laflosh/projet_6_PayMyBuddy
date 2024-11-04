@@ -62,6 +62,8 @@ public class UserService {
 	 */
 	public UserDB updateAExistingUser(UserDB user) {
 		
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		
 		log.info("Updating the user in the database with id : {}", user.getId());
 		return userRepository.save(user);
 		
