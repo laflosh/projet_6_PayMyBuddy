@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paymybuddy.backend.model.Transaction;
+import com.paymybuddy.backend.model.TransactionDB;
 import com.paymybuddy.backend.model.dtos.TransactionDTO;
 import com.paymybuddy.backend.repository.TransactionRepository;
 import com.paymybuddy.backend.service.TransactionService;
@@ -28,7 +28,7 @@ import com.paymybuddy.backend.service.TransactionService;
 public class TransactionControllerTest {
 
 	private static final String TEST_TRANSACTION_PREFIX = "testtransaction_";
-    private List<Transaction> createdTestTransactions = new ArrayList<>();
+    private List<TransactionDB> createdTestTransactions = new ArrayList<>();
 	
 	@Autowired
 	TransactionRepository transactionRepository;
@@ -53,7 +53,7 @@ public class TransactionControllerTest {
 		testTransactionDTO.setAmont(100);
 		
 		//Saving the test entity in the database
-		Transaction transaction = transactionService.addANewTransaction(testTransactionDTO);
+		TransactionDB transaction = transactionService.addANewTransaction(testTransactionDTO);
 		//Put it in a List to have acces at the entity
 		createdTestTransactions.add(transaction);
 		
@@ -87,7 +87,7 @@ public class TransactionControllerTest {
 	public void getOneTransactionAndReturnOk() throws Exception {
 		
 		//Getting the entity to fetch in the database
-		Transaction testTransaction = createdTestTransactions.get(0);
+		TransactionDB testTransaction = createdTestTransactions.get(0);
 		
 		//Testing request
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/transactions/" + testTransaction.getId()))
@@ -127,7 +127,7 @@ public class TransactionControllerTest {
 	public void updateAExistingTransactionAndReturnCreated() throws Exception {
 		
 		//Getting entity to update and setting modification
-		Transaction testTransaction = createdTestTransactions.get(0);
+		TransactionDB testTransaction = createdTestTransactions.get(0);
 		TransactionDTO testTransactionDTO = new TransactionDTO();
 		testTransactionDTO.setId(testTransaction.getId());
 		testTransactionDTO.setSenderId(testTransaction.getSender().getId());
@@ -149,7 +149,7 @@ public class TransactionControllerTest {
 	public void deleteAExistingTransactionWithTheEntityAndReturnNoContent() throws Exception {
 		
 		//Getting the entity and setting the dto
-		Transaction testTransaction = createdTestTransactions.get(0);
+		TransactionDB testTransaction = createdTestTransactions.get(0);
 		TransactionDTO testTransactionDTO = new TransactionDTO();
 		testTransactionDTO.setId(testTransaction.getId());
 		testTransactionDTO.setSenderId(testTransaction.getSender().getId());
@@ -171,7 +171,7 @@ public class TransactionControllerTest {
 	public void deleteAExistingTTransactionWithTheId() throws Exception {
 		
 		//Getting the entity to delete
-		Transaction testTransaction = createdTestTransactions.get(0);
+		TransactionDB testTransaction = createdTestTransactions.get(0);
 		
 		//Testing request
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/transactions/" + testTransaction.getId()))
@@ -185,7 +185,7 @@ public class TransactionControllerTest {
 	@WithMockUser
 	public void getAllSenderTransactionsOfAnUserAndReturnOk() throws Exception {
 		
-		Transaction transaction = createdTestTransactions.get(0);
+		TransactionDB transaction = createdTestTransactions.get(0);
 		
 		//Testing request
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/transactions/sender/" + transaction.getSender().getId()))
@@ -200,7 +200,7 @@ public class TransactionControllerTest {
 	@WithMockUser
 	public void getAllReceiverTransactionsOfAnUserAndReturnOk() throws Exception {
 		
-		Transaction transaction = createdTestTransactions.get(0);
+		TransactionDB transaction = createdTestTransactions.get(0);
 		
 		//Testing request
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/transactions/receiver/" + transaction.getReceiver().getId()))

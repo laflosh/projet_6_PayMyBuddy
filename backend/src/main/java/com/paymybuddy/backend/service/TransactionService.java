@@ -2,7 +2,6 @@ package com.paymybuddy.backend.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.paymybuddy.backend.model.dtos.ReceiverTransactionDTO;
 import com.paymybuddy.backend.model.dtos.SenderTransactionDTO;
-import com.paymybuddy.backend.model.Transaction;
-import com.paymybuddy.backend.model.User;
+import com.paymybuddy.backend.model.TransactionDB;
+import com.paymybuddy.backend.model.UserDB;
 import com.paymybuddy.backend.model.dtos.TransactionDTO;
 import com.paymybuddy.backend.repository.TransactionRepository;
 import com.paymybuddy.backend.repository.UserRepository;
@@ -33,7 +32,7 @@ public class TransactionService {
 	/**
 	 * @return A List of transactions
 	 */
-	public Iterable<Transaction> getAllTransactions() {
+	public Iterable<TransactionDB> getAllTransactions() {
 		
 		log.info("Fetching all the transaction int the database");
 		
@@ -45,17 +44,13 @@ public class TransactionService {
 	 * @param The id of the transaction
 	 * @return A transaction
 	 */
-	public Optional<Transaction> getOneTransactionById(int id) {
+	public TransactionDB getOneTransactionById(int id) {
 		
-		log.info("Fetching one transaction in the database with id : " + id +" .");
-		
-		if(transactionRepository.existsById(id)) {
+		log.info("Fetching one transaction in the database with id : {} .", id);
 			
-			return transactionRepository.findById(id);
+		return transactionRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Transaction not found"));
 			
-		}
-		
-		return null;
 	}
 
 	/**
@@ -63,11 +58,11 @@ public class TransactionService {
 	 * @return The saved transaction
 	 */
 	@Transactional
-	public Transaction addANewTransaction(TransactionDTO transactionDTO) {
+	public TransactionDB addANewTransaction(TransactionDTO transactionDTO) {
 		
 		log.info("Saving a transaction in the database");
 		
-		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
+		TransactionDB transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		return transactionRepository.save(transaction);
 		
@@ -78,11 +73,11 @@ public class TransactionService {
 	 * @return The updated transaction
 	 */
 	@Transactional
-	public Transaction updateAExistingTransaction(TransactionDTO transactionDTO) {
+	public TransactionDB updateAExistingTransaction(TransactionDTO transactionDTO) {
 		
-		log.info("Updating a transaction in the database with id :" + transactionDTO.getId() + " .");
+		log.info("Updating a transaction in the database with id : {} .", transactionDTO.getId());
 		
-		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
+		TransactionDB transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		return transactionRepository.save(transaction);
 	}
@@ -96,7 +91,7 @@ public class TransactionService {
 
 		log.info("Delete a existing transaction in the database with the entity.");
 		
-		Transaction transaction = transferTransactionDTOToTransaction(transactionDTO);
+		TransactionDB transaction = transferTransactionDTOToTransaction(transactionDTO);
 		
 		if(transactionRepository.existsById(transaction.getId())) {
 			
@@ -114,7 +109,7 @@ public class TransactionService {
 	 */
 	public boolean deleteATransactionByTheId(int id) {
 		
-		log.info("Delete a existing transaction in the database with id :" + id + " .");
+		log.info("Delete a existing transaction in the database with id : {} .", id);
 		
 		if(transactionRepository.existsById(id)) {
 			
@@ -133,7 +128,7 @@ public class TransactionService {
 	@Transactional
 	public List<SenderTransactionDTO> getSenderTransactionsForAnUser(int id) {
 		
-		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
+		UserDB user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
 		
 		List<SenderTransactionDTO> senderTransactionsList = new ArrayList<SenderTransactionDTO>();
 		
@@ -156,7 +151,7 @@ public class TransactionService {
 	 */
 	public List<ReceiverTransactionDTO> getReceiverTransactionsOfAnUser(int id) {
 		
-		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
+		UserDB user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
 		
 		List<ReceiverTransactionDTO> receiverTransactionsList = new ArrayList<ReceiverTransactionDTO>();
 		
@@ -179,21 +174,18 @@ public class TransactionService {
 	 * @param transactionDTO
 	 * @return A transaction
 	 */
-	@Transactional
-	public Transaction transferTransactionDTOToTransaction(TransactionDTO transactionDTO) {
+	public TransactionDB transferTransactionDTOToTransaction(TransactionDTO transactionDTO) {
 		
 		log.info("Data transfer transactionDTO to a new entity Transaction");
 		
-		User sender = userRepository.findById(transactionDTO.getSenderId())
+		UserDB sender = userRepository.findById(transactionDTO.getSenderId())
 				.orElseThrow(() -> new RuntimeException("Sender not found."));
-		User receiver = userRepository.findById(transactionDTO.getReceiverId())
+		UserDB receiver = userRepository.findById(transactionDTO.getReceiverId())
 				.orElseThrow(() -> new RuntimeException("Receiver not found."));
 		
-		Transaction transaction = new Transaction();
+		TransactionDB transaction = new TransactionDB();
 		
-		if(transactionDTO.getId() != null) {
-			transaction.setId(transactionDTO.getId());
-		}
+		transaction.setId(transactionDTO.getId());
 		transaction.setSender(sender);
 		transaction.setReceiver(receiver);
 		transaction.setDescription(transactionDTO.getDescription());

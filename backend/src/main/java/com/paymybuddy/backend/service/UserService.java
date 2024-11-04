@@ -2,14 +2,13 @@ package com.paymybuddy.backend.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.paymybuddy.backend.model.User;
+import com.paymybuddy.backend.model.UserDB;
 import com.paymybuddy.backend.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -25,7 +24,7 @@ public class UserService {
 	/**
 	 * @return A List Of users 
 	 */
-	public Iterable<User> getAllUsers(){
+	public Iterable<UserDB> getAllUsers(){
 		
 		log.info("Fetching all the users in the database");
 		return userRepository.findAll();
@@ -36,16 +35,10 @@ public class UserService {
 	 * @param id of the user
 	 * @return An user
 	 */
-	public Optional<User> getOneUserById(int id) {
-		
-		if(userRepository.existsById(id)) {
+	public UserDB getOneUserById(int id) {
 			
-			log.info("Fetching one user in the database with id :" + id);
-			return userRepository.findById(id);
-			
-		}
-		return null;
-		
+		log.info("Fetching one user in the database with id : {}", id);
+		return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 		
 	}
 
@@ -53,7 +46,7 @@ public class UserService {
 	 * @param A new user
 	 * @return The saved user
 	 */
-	public User addNewUser(User user) {
+	public UserDB addNewUser(UserDB user) {
 
 		log.info("Saving a new user in the database");
 		return userRepository.save(user);
@@ -64,9 +57,9 @@ public class UserService {
 	 * @param A modify user
 	 * @return A updated user
 	 */
-	public User updateAExistingUser(User user) {
+	public UserDB updateAExistingUser(UserDB user) {
 		
-		log.info("Updating the user in the database with id :" + user.getId());
+		log.info("Updating the user in the database with id : {}", user.getId());
 		return userRepository.save(user);
 		
 	}
@@ -74,7 +67,7 @@ public class UserService {
 	/**
 	 * @param An user
 	 */
-	public boolean deleteAExistingUserByTheEntity(User user) {
+	public boolean deleteAExistingUserByTheEntity(UserDB user) {
 		
 		log.info("Delete an user in the database with his entity");
 		
@@ -95,7 +88,7 @@ public class UserService {
 	 */
 	public boolean deleteAExistingUserByTheId(int id) {
 		
-		log.info("Delete an user in the database with id :" + id);
+		log.info("Delete an user in the database with id : {}", id);
 		
 		if(userRepository.existsById(id)) {
 			
@@ -112,15 +105,15 @@ public class UserService {
 	 * @param The user id
 	 * @return The connection list of user
 	 */
-	public List<User> getConnectionsOfAnUser(int id) {
+	public List<UserDB> getConnectionsOfAnUser(int id) {
 		
-		log.info("Fetching all the connections of an user with id : " + id + " .");
+		log.info("Fetching all the connections of an user with id : {} .", id);
 		
 		//Fetching the user
-		User user = userRepository.findById(id)
+		UserDB user = userRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("User not found"));
 		
-		List<User> connections = new ArrayList<User>();
+		List<UserDB> connections = new ArrayList<UserDB>();
 		
 		//Add user's connections in a List
 		user.getConnections().forEach(connection -> {
@@ -136,13 +129,13 @@ public class UserService {
 	 * @return The new List of connection
 	 */
 	@Transactional
-	public List<User> addForAnUserANewConnectionWithEmail(int id, String email) {
+	public List<UserDB> addForAnUserANewConnectionWithEmail(int id, String email) {
 		
-		log.info("Add a new connection with the email address : " + email + " of an user with id :" + id +" .");
+		log.info("Add a new connection with the email address : {} of an user with id : {} .", email, id);
 		
 		//Fetching user and user connection
-		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-		User connection = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+		UserDB user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		UserDB connection = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
 		
 		if(user.getConnections().contains(connection)) {
 			throw new IllegalArgumentException("Connection already exists.");
@@ -162,16 +155,16 @@ public class UserService {
 	 * @param The user connectionId
 	 * @return
 	 */
-	public List<User> deleteForAnUserAConnectionInHisList(int id, int connectionId) {
+	public List<UserDB> deleteForAnUserAConnectionInHisList(int id, int connectionId) {
 		
-		log.info("Delete the connection with id : " + connectionId + " of an user with id : " + id + " .");
+		log.info("Delete the connection with id : {} of an user with id : {} .", connectionId , id);
 		
 		//Fetching user 
-		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+		UserDB user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 		
-		User connectionToRemove = null;
+		UserDB connectionToRemove = null;
 		//Removing connection
-		for(User connection : user.getConnections()){
+		for(UserDB connection : user.getConnections()){
 			
 			if(connection.getId() == connectionId) {
 				

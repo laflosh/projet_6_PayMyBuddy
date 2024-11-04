@@ -1,12 +1,12 @@
 package com.paymybuddy.backend.model.dtos;
 
-import com.paymybuddy.backend.model.User;
+import com.paymybuddy.backend.model.UserDB;
 
 public class SenderTransactionDTO {
 
 	private int transactionId;
 	
-	private User receiver;
+	private UserDB receiver;
 	
 	private String description;
 	
@@ -20,11 +20,11 @@ public class SenderTransactionDTO {
 		this.transactionId = transactionId;
 	}
 
-	public User getReceiver() {
+	public UserDB getReceiver() {
 		return receiver;
 	}
 
-	public void setReceiver(User receiver) {
+	public void setReceiver(UserDB receiver) {
 		this.receiver = receiver;
 	}
 

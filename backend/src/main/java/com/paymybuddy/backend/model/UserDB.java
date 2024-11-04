@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "user")
 @DynamicUpdate
-public class User {
+public class UserDB {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +53,7 @@ public class User {
 			)
 	//@JsonIgnoreProperties({"password","connections", "transactionSender", "transactionReceiver"})
 	@JsonIgnore
-	private List<User> connections = new ArrayList<User>();
+	private List<UserDB> connections = new ArrayList<UserDB>();
 
 	@OneToMany(
 			mappedBy = "sender",
@@ -61,7 +61,7 @@ public class User {
 			)
 	//@JsonIgnoreProperties({"sender"})
 	@JsonIgnore
-	private List<Transaction> transactionSender = new ArrayList<Transaction>();
+	private List<TransactionDB> transactionSender = new ArrayList<TransactionDB>();
 	
 	@OneToMany(
 			mappedBy = "receiver",
@@ -69,7 +69,7 @@ public class User {
 			)
 	//@JsonIgnoreProperties({"receiver"})
 	@JsonIgnore
-	private List<Transaction> transactionReceiver = new ArrayList<Transaction>();
+	private List<TransactionDB> transactionReceiver = new ArrayList<TransactionDB>();
 	
 	
 	public int getId() {
@@ -104,38 +104,38 @@ public class User {
 		this.password = password;
 	}
 
-	public List<User> getConnections() {
+	public List<UserDB> getConnections() {
 		return connections;
 	}
 
-	public void setConnections(List<User> connections) {
+	public void setConnections(List<UserDB> connections) {
 		this.connections = connections;
 	}
 	
-	public List<Transaction> getTransactionSender() {
+	public List<TransactionDB> getTransactionSender() {
 		return transactionSender;
 	}
 
-	public void setTransactionSender(List<Transaction> transactionSender) {
+	public void setTransactionSender(List<TransactionDB> transactionSender) {
 		this.transactionSender = transactionSender;
 	}
 
-	public List<Transaction> getTransactionReceiver() {
+	public List<TransactionDB> getTransactionReceiver() {
 		return transactionReceiver;
 	}
 
-	public void setTransactionReceiver(List<Transaction> transactionReceiver) {
+	public void setTransactionReceiver(List<TransactionDB> transactionReceiver) {
 		this.transactionReceiver = transactionReceiver;
 	}
 
 	//Util method
-	public void addConnections(User user) {
+	public void addConnections(UserDB user) {
 		
 		connections.add(user);
 		
 	}
 	
-	public void removeConnection(User user ) {
+	public void removeConnection(UserDB user ) {
 		
 		connections.remove(user);
 		

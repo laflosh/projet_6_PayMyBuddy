@@ -19,7 +19,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paymybuddy.backend.model.User;
+import com.paymybuddy.backend.model.UserDB;
 import com.paymybuddy.backend.repository.UserRepository;
 
 @SpringBootTest
@@ -27,7 +27,7 @@ import com.paymybuddy.backend.repository.UserRepository;
 public class UserControllerTest {
 
 	private static final String TEST_USER_PREFIX = "testuser_";
-    private List<User> createdTestUsers = new ArrayList<>();
+    private List<UserDB> createdTestUsers = new ArrayList<>();
 	
 	@Autowired
 	UserRepository userRepository;
@@ -41,7 +41,7 @@ public class UserControllerTest {
 	@BeforeEach
 	private void setUp(){
 		//Creating an user test
-		User testUser = new User();
+		UserDB testUser = new UserDB();
 		testUser.setUsername(TEST_USER_PREFIX + "1");
 		testUser.setEmail("test@test.fr");
 		testUser.setPassword("password");
@@ -76,7 +76,7 @@ public class UserControllerTest {
 	@WithMockUser
 	public void getOneUserInDataBaseAndReturnOk() throws Exception {
 		//Getting the user to fetch in database
-		User testUser = createdTestUsers.get(0);
+		UserDB testUser = createdTestUsers.get(0);
 		
 		//Testing request
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/users/" + testUser.getId()))
@@ -89,7 +89,7 @@ public class UserControllerTest {
 	@WithMockUser
 	public void addANewUserInTheDatabaseAndReturnCreated() throws Exception {
 		//Create a new user test entity
-		User newUser = new User();
+		UserDB newUser = new UserDB();
 		newUser.setUsername(TEST_USER_PREFIX + "2");
 		newUser.setEmail("essaie@essaie.fr");
 		newUser.setPassword("password");
@@ -110,7 +110,7 @@ public class UserControllerTest {
 	@WithMockUser
 	public void updateAExistingUserAndReturnIsCreated() throws Exception {
 		//Fetching the user to be modifiy
-		User testUser = createdTestUsers.get(0);
+		UserDB testUser = createdTestUsers.get(0);
 		
 		testUser.setEmail("try@try.fr");
 		testUser.setPassword("pass");
@@ -129,7 +129,7 @@ public class UserControllerTest {
 	@WithMockUser
 	public void deleteAExistingUserInDatabaseAndReturnNoContent() throws Exception {
 		//Fetching user entity to be delete
-		User testUser = createdTestUsers.get(0);
+		UserDB testUser = createdTestUsers.get(0);
 		
 		String userAsString =  objectMapper.writeValueAsString(testUser);
 		
@@ -143,7 +143,7 @@ public class UserControllerTest {
 	@Test
 	@WithMockUser
 	public void deleteAExistingUserWithTheIdInDatabaseAndReturnNoContent() throws Exception {
-		User testUser = createdTestUsers.get(0);
+		UserDB testUser = createdTestUsers.get(0);
 		
 		//Testing request
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/users/" + testUser.getId()))

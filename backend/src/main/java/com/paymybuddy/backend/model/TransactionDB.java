@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "transaction")
 @DynamicUpdate
-public class Transaction {
+public class TransactionDB {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Transaction {
 				}
 			)
 	@JoinColumn(name = "sender")
-	private User sender;
+	private UserDB sender;
 	
 	@ManyToOne(
 			cascade = {
@@ -38,7 +38,7 @@ public class Transaction {
 				}
 			)
 	@JoinColumn(name = "receiver")
-	private User receiver;
+	private UserDB receiver;
 	
 	@Column(name = "description")
 	private String description;
@@ -54,19 +54,19 @@ public class Transaction {
 		this.id = id;
 	}
 
-	public User getSender() {
+	public UserDB getSender() {
 		return sender;
 	}
 
-	public void setSender(User sender) {
+	public void setSender(UserDB sender) {
 		this.sender = sender;
 	}
 
-	public User getReceiver() {
+	public UserDB getReceiver() {
 		return receiver;
 	}
 
-	public void setReceiver(User receiver) {
+	public void setReceiver(UserDB receiver) {
 		this.receiver = receiver;
 	}
 

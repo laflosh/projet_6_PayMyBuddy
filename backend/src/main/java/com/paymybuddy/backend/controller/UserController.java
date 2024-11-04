@@ -1,7 +1,6 @@
 package com.paymybuddy.backend.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.paymybuddy.backend.model.User;
+import com.paymybuddy.backend.model.UserDB;
 import com.paymybuddy.backend.service.UserService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
 
 	private Logger log = LogManager.getLogger(UserController.class);
@@ -34,12 +33,12 @@ public class UserController {
 	 * 
 	 * @return A List of users
 	 */
-	@GetMapping("/users")
-	public ResponseEntity<Iterable<User>> getAllUsers(){
+	@GetMapping
+	public ResponseEntity<Iterable<UserDB>> getAllUsers(){
 		
 		log.info("Trying to acces to all users in database.");
 		
-		Iterable<User> users = userService.getAllUsers();
+		Iterable<UserDB> users = userService.getAllUsers();
 		
 		return ResponseEntity.ok(users);
 		
@@ -51,12 +50,12 @@ public class UserController {
 	 * @param id of the user
 	 * @return A User
 	 */
-	@GetMapping("/users/{id}")
-	public ResponseEntity<Optional<User>> getOneUserById(@PathVariable int id) {
+	@GetMapping("/{id}")
+	public ResponseEntity<UserDB> getOneUserById(@PathVariable int id) {
 		
-		log.info("Trying to acces to the user in the database with id : " + id + " .");
+		log.info("Trying to acces to the user in the database with id : {} .", id);
 		
-		Optional<User> user = userService.getOneUserById(id);
+		UserDB user = userService.getOneUserById(id);
 		
 		return ResponseEntity.ok(user);
 		
@@ -68,13 +67,13 @@ public class UserController {
 	 * @param A new user
 	 * @return A saved user
 	 */
-	@PostMapping("/users")
-	public ResponseEntity<User> addNewUser(@RequestBody User user) {
+	@PostMapping
+	public ResponseEntity<UserDB> addNewUser(@RequestBody UserDB user) {
 		
 		try {
 			log.info("Trying to save a new user in the database.");
 			
-			User savedUser = userService.addNewUser(user);
+			UserDB savedUser = userService.addNewUser(user);
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
 		} catch (Exception e) {
@@ -91,13 +90,13 @@ public class UserController {
 	 * @param A modify user
 	 * @return The updated user
 	 */
-	@PutMapping("/users")
-	public ResponseEntity<User> updateAExistingUser(@RequestBody User user) {
+	@PutMapping
+	public ResponseEntity<UserDB> updateAExistingUser(@RequestBody UserDB user) {
 		
 		try {
-			log.info("Trying to updating an existing user in database with id : "+ user.getId() + " .");
+			log.info("Trying to updating an existing user in database with id : {} .", user.getId());
 			
-			User updatedUser = userService.addNewUser(user);
+			UserDB updatedUser = userService.addNewUser(user);
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(updatedUser);
 		} catch(Exception e) {
@@ -115,8 +114,8 @@ public class UserController {
 	 * @param A user
 	 * @return
 	 */
-	@DeleteMapping("/users")
-	public ResponseEntity<Void> deleteAExistingUserByTheEntity(@RequestBody User user) {
+	@DeleteMapping
+	public ResponseEntity<Void> deleteAExistingUserByTheEntity(@RequestBody UserDB user) {
 		
 		log.info("Trying to delete an user with entity in database.");
 		boolean isDeleted = userService.deleteAExistingUserByTheEntity(user);
@@ -135,10 +134,10 @@ public class UserController {
 	 * @param id of the user
 	 * @return 
 	 */
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteAExistingUserByTheId(@PathVariable int id) {
 		
-		log.info("Trying to delete an user in the database with id : " + id + ".");
+		log.info("Trying to delete an user in the database with id : {} ", id);
 		
 		boolean isDeleted = userService.deleteAExistingUserByTheId(id);
 		
@@ -156,12 +155,12 @@ public class UserController {
 	 * @param The user id
 	 * @return A List of users
 	 */
-	@GetMapping("/users/{id}/connections")
-	public ResponseEntity<List<User>> getConnectionsOfAnUser(@PathVariable int id) {
+	@GetMapping("/{id}/connections")
+	public ResponseEntity<List<UserDB>> getConnectionsOfAnUser(@PathVariable int id) {
 		
-		log.info("Trying to fetching all the connections of an user with id : " + id + " .");
+		log.info("Trying to fetching all the connections of an user with id : {} .", id);
 		
-		List<User> connections = userService.getConnectionsOfAnUser(id);
+		List<UserDB> connections = userService.getConnectionsOfAnUser(id);
 		
 		return ResponseEntity.ok(connections);
 		
@@ -174,13 +173,13 @@ public class UserController {
 	 * @param the emailUserConnection for search by email address
 	 * @return The new connections List
 	 */
-	@PostMapping("/users/{id}/connections")
-	public ResponseEntity<List<User>> addForAnUserANewConnectionWithEmail(@RequestBody String email, @PathVariable int id){
+	@PostMapping("/{id}/connections")
+	public ResponseEntity<List<UserDB>> addForAnUserANewConnectionWithEmail(@RequestBody String email, @PathVariable int id){
 		
-		log.info("Trying to add a new connection with the email address : " + email + " of an user with id :" + id +" .");
+		log.info("Trying to add a new connection with the email address : {} of an user with id : {} .", email ,id);
 		
 		try {
-			List<User> newConnectionsList = userService.addForAnUserANewConnectionWithEmail(id, email);
+			List<UserDB> newConnectionsList = userService.addForAnUserANewConnectionWithEmail(id, email);
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(newConnectionsList);
 		} catch (Exception e) {
@@ -198,13 +197,13 @@ public class UserController {
 	 * @param The user connectionId
 	 * @return
 	 */
-	@DeleteMapping("/users/{id}/connections/{connectionId}")
-	public ResponseEntity<List<User>> deleteForAnUserAConnectionInHisList(@PathVariable int id,@PathVariable int connectionId){
+	@DeleteMapping("/{id}/connections/{connectionId}")
+	public ResponseEntity<List<UserDB>> deleteForAnUserAConnectionInHisList(@PathVariable int id,@PathVariable int connectionId){
 		
-		log.info("Trying to delete the connection with id : " + connectionId + " of an user with id : " + id + " .");
+		log.info("Trying to delete the connection with id : {} of an user with id : {}.", connectionId, id);
 		
 		try {
-			List<User> newConnectionsList = userService.deleteForAnUserAConnectionInHisList(id, connectionId);
+			List<UserDB> newConnectionsList = userService.deleteForAnUserAConnectionInHisList(id, connectionId);
 			
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(newConnectionsList);
 		} catch(Exception e) {
