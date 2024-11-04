@@ -181,4 +181,34 @@ public class TransactionControllerTest {
 		
 	}
 	
+	@Test
+	@WithMockUser
+	public void getAllSenderTransactionsOfAnUserAndReturnOk() throws Exception {
+		
+		Transaction transaction = createdTestTransactions.get(0);
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/transactions/sender/" + transaction.getSender().getId()))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.not(Matchers.empty())));
+		
+		
+	}
+	
+	@Test
+	@WithMockUser
+	public void getAllReceiverTransactionsOfAnUserAndReturnOk() throws Exception {
+		
+		Transaction transaction = createdTestTransactions.get(0);
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/transactions/receiver/" + transaction.getReceiver().getId()))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.not(Matchers.empty())));
+		
+		
+	}
+	
 }
