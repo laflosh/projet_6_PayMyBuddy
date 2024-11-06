@@ -122,11 +122,13 @@ public class TransactionService {
 	}
 	
 	/**
-	 * @param id
-	 * @return
+	 * @param The user id
+	 * @return A List of SenderTransaction
 	 */
 	@Transactional
 	public List<SenderTransactionDTO> getSenderTransactionsForAnUser(int id) {
+		
+		log.info("Fetching all transaction in the database where the user with id : {} is the sender.", id);
 		
 		UserDB user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
 		
@@ -146,10 +148,12 @@ public class TransactionService {
 	}
 	
 	/**
-	 * @param id
-	 * @return
+	 * @param The user id
+	 * @return A List of ReceiverTransaction
 	 */
 	public List<ReceiverTransactionDTO> getReceiverTransactionsOfAnUser(int id) {
+		
+		log.info("Fetching all transaction in the database where the user with id : {} is the receiver.", id);
 		
 		UserDB user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Sender not found."));
 		

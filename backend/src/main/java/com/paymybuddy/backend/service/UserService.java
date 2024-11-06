@@ -142,6 +142,10 @@ public class UserService {
 		UserDB user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
 		UserDB connection = userRepository.findByEmail(email);
 		
+		if(user == connection) {
+			throw new IllegalArgumentException("Can not add yourself in connection.");
+		}
+		
 		if(user.getConnections().contains(connection)) {
 			throw new IllegalArgumentException("Connection already exists.");
 		}

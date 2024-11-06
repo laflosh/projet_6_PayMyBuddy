@@ -161,11 +161,15 @@ public class TransactionController {
 	}
 	
 	/**
-	 * @param id
-	 * @return
+	 * Getting all the transaction where an user is the sender
+	 * 
+	 * @param The user id
+	 * @return A List of SenderTransaction
 	 */
 	@GetMapping("/sender/{id}")
 	public ResponseEntity<List<SenderTransactionDTO>> getSenderTransactionsForAnUser(@PathVariable int id){
+		
+		log.info("Trying to fetch all transaction in the database where the user with id : {} is the sender.", id);
 		
 		List<SenderTransactionDTO> senderTransactions = transactionService.getSenderTransactionsForAnUser(id);
 		
@@ -174,11 +178,15 @@ public class TransactionController {
 	}
 	
 	/**
-	 * @param id
-	 * @return
+	 * Getting all the transaction where an user is the receiver
+	 * 
+	 * @param The user id
+	 * @return A List of ReceiverTransaction
 	 */
 	@GetMapping("/receiver/{id}")
 	public ResponseEntity<List<ReceiverTransactionDTO>> getReceiverTransactionsOfAnUser(@PathVariable int id){
+		
+		log.info("Trying to fetch all transaction in the database where the user with id : {} is the receiver.", id);
 		
 		List<ReceiverTransactionDTO> receiverTransactions = transactionService.getReceiverTransactionsOfAnUser(id);
 		
