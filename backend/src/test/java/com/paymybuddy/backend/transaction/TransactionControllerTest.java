@@ -124,6 +124,17 @@ public class TransactionControllerTest {
 	
 	@Test
 	@WithMockUser
+	public void sendingWrongEntityForCreateANewTransactionAndReturnBadRequest() throws Exception {
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/transactions"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		
+	}
+	
+	@Test
+	@WithMockUser
 	public void updateAExistingTransactionAndReturnCreated() throws Exception {
 		
 		//Getting entity to update and setting modification
@@ -142,6 +153,17 @@ public class TransactionControllerTest {
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isCreated())
 			.andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.not(Matchers.empty())));
+	}
+	
+	@Test
+	@WithMockUser
+	public void sendingWrongEntityForUpdateATransactionAndReturnBadRequest() throws Exception {
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.put("/api/transactions"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		
 	}
 	
 	@Test
@@ -168,6 +190,26 @@ public class TransactionControllerTest {
 	
 	@Test
 	@WithMockUser
+	public void sendingWrongEntityForDeleteAndReturnNotFound() throws Exception {
+		
+		//Transaction entity to be delete
+		TransactionDTO newTransactionDTO = new TransactionDTO();
+		newTransactionDTO.setId(0);
+		newTransactionDTO.setSenderId(1);
+		newTransactionDTO.setReceiverId(2);
+		
+		String transactionAsString =  objectMapper.writeValueAsString(newTransactionDTO);
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/transactions" )
+				.contentType(MediaType.APPLICATION_JSON).content(transactionAsString))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
+		
+	}
+	
+	@Test
+	@WithMockUser
 	public void deleteAExistingTTransactionWithTheId() throws Exception {
 		
 		//Getting the entity to delete
@@ -178,6 +220,17 @@ public class TransactionControllerTest {
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isNoContent());
 		
+		
+	}
+	
+	@Test
+	@WithMockUser
+	public void sendingWrongIdNumberForDeleteAndReturnNotFound() throws Exception {
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/transactions/" + 0))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
 		
 	}
 	

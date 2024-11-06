@@ -189,7 +189,9 @@ public class TransactionService {
 		
 		TransactionDB transaction = new TransactionDB();
 		
-		transaction.setId(transactionDTO.getId());
+		if(transactionDTO.getId() != null) {
+			transaction.setId(transactionDTO.getId());
+		}
 		transaction.setSender(sender);
 		transaction.setReceiver(receiver);
 		transaction.setDescription(transactionDTO.getDescription());

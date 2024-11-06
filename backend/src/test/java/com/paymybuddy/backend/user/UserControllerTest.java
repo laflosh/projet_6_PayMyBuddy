@@ -165,12 +165,11 @@ public class UserControllerTest {
 	@Test
 	@WithMockUser
 	public void sendingWrongEntityForDeleteAndReturnNotFound() throws Exception {
-		//Fetching user entity to be delete
+		//User entity to be delete
 		UserDB testUser = new UserDB();
 		testUser.setId(0);
 		
 		String userAsString =  objectMapper.writeValueAsString(testUser);
-		
 		
 		//Testing request
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/users")
