@@ -29,7 +29,8 @@ public class SecurityConfig {
         		.requestMatchers("/user").hasRole("USER")
                 .anyRequest().authenticated()// Authentification pour toutes les autres requêtes
             )
-            .formLogin(Customizer.withDefaults());
+            .formLogin(Customizer.withDefaults())
+        	.httpBasic(Customizer.withDefaults());
 
         return http.build();
         

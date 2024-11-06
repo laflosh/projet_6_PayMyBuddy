@@ -43,7 +43,7 @@ public class UserControllerTest {
 		//Creating an user test
 		UserDB testUser = new UserDB();
 		testUser.setUsername(TEST_USER_PREFIX + "1");
-		testUser.setEmail("test@test.fr");
+		testUser.setEmail("email@email.fr");
 		testUser.setPassword("password");
 		
 		//Save it in database and add it in a list to acces
@@ -108,6 +108,17 @@ public class UserControllerTest {
 	
 	@Test
 	@WithMockUser
+	public void sendingWrongEntityForSavingAnUserAndReturnBadRequest() throws Exception {
+		
+		//Testing the request
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/users"))
+		.andDo(MockMvcResultHandlers.print())
+		.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		
+	}
+	
+	@Test
+	@WithMockUser
 	public void updateAExistingUserAndReturnIsCreated() throws Exception {
 		//Fetching the user to be modifiy
 		UserDB testUser = createdTestUsers.get(0);
@@ -127,6 +138,17 @@ public class UserControllerTest {
 	
 	@Test
 	@WithMockUser
+	public void sendingWrongEntityForUpdatingAnUserAndReturnBadRequest() throws Exception {
+		
+		//Testing the request
+		mockMvc.perform(MockMvcRequestBuilders.put("/api/users"))
+		.andDo(MockMvcResultHandlers.print())
+		.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		
+	}
+	
+	@Test
+	@WithMockUser
 	public void deleteAExistingUserInDatabaseAndReturnNoContent() throws Exception {
 		//Fetching user entity to be delete
 		UserDB testUser = createdTestUsers.get(0);
@@ -142,6 +164,24 @@ public class UserControllerTest {
 	
 	@Test
 	@WithMockUser
+	public void sendingWrongEntityForDeleteAndReturnNotFound() throws Exception {
+		//Fetching user entity to be delete
+		UserDB testUser = new UserDB();
+		testUser.setId(0);
+		
+		String userAsString =  objectMapper.writeValueAsString(testUser);
+		
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/users")
+				.contentType(MediaType.APPLICATION_JSON).content(userAsString))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
+		
+	}
+	
+	@Test
+	@WithMockUser
 	public void deleteAExistingUserWithTheIdInDatabaseAndReturnNoContent() throws Exception {
 		UserDB testUser = createdTestUsers.get(0);
 		
@@ -149,6 +189,17 @@ public class UserControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/api/users/" + testUser.getId()))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isNoContent());
+	}
+	
+	@Test
+	@WithMockUser
+	public void sendingWrongIdNumberForDeleteAndReturnNotFound() throws Exception {
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders.delete("/api/users/" + 0))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
+		
 	}
 	
 	@Test
@@ -182,6 +233,32 @@ public class UserControllerTest {
 	
 	@Test
 	@WithMockUser
+	public void addAConnectionAlreadyExistForTheUserAndReturnBadRequest() throws Exception {
+		
+		//testing request
+		mockMvc.perform(MockMvcRequestBuilders
+				.post("/api/users/"+ 1 +"/connections")
+				.contentType(MediaType.TEXT_PLAIN).content("aurelie@hotmail.fr")) //User 1 already have aurelie@hotmail.fr in connection 
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		
+	}
+	
+	@Test
+	@WithMockUser
+	public void addUserHimselfForConnectionAndReturnBadRequest() throws Exception {
+		
+		//testing request
+		mockMvc.perform(MockMvcRequestBuilders
+				.post("/api/users/"+ 1 +"/connections")
+				.contentType(MediaType.TEXT_PLAIN).content("sophie@hotmail.fr"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isBadRequest());
+		
+	}
+	
+	@Test
+	@WithMockUser
 	public void deleteAConnectionInTheUserConnectionListAndReturnNoContent() throws Exception {
 		
 		addAConnectionInTheUserConnectionListAndReturnCreated();
@@ -191,6 +268,18 @@ public class UserControllerTest {
 				.delete("/api/users/" + createdTestUsers.get(0).getId() + "/connections/" + createdTestUsers.get(1).getId()))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isNoContent());
+		
+	}
+	
+	@Test
+	@WithMockUser
+	public void deleteAConnectionWhoDontExistAndReturnBadRequest() throws Exception {
+		
+		//Testing request
+		mockMvc.perform(MockMvcRequestBuilders
+				.delete("/api/users/" + 1 + "/connections/"))
+			.andDo(MockMvcResultHandlers.print())
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
 		
 	}
 
