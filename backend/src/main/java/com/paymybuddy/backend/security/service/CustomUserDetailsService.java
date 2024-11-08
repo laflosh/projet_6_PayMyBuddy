@@ -1,4 +1,4 @@
-package com.paymybuddy.backend.service;
+package com.paymybuddy.backend.security.service;
 
 import java.util.ArrayList;
 import java.util.List;
