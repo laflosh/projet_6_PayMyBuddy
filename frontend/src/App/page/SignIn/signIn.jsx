@@ -1,15 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { redirectionTo} from "../../lib/common.js";
 import { APP_ROUTES } from "../../utils/constant";
 
 function SignIn(){
 
     const navigate = useNavigate();
-
-    function redirectionTo(path){
-
-        navigate(`${path}`);
-
-    }
 
     return(
 
@@ -20,11 +15,11 @@ function SignIn(){
             <form className="countainerSignIn__signInForm">
 
                 <label>
-                    <input for="text" name="email" id="email" placeholder="Email" required/>
+                    <input type="text" name="email" id="email" placeholder="Email" required/>
                 </label>
 
                 <label>
-                    <input for="text" name="password" id="password" placeholder="Mot de passe" required/>
+                    <input type="text" name="password" id="password" placeholder="Mot de passe" required/>
                 </label>
 
                 <button>
@@ -34,7 +29,7 @@ function SignIn(){
             </form>
 
             <button class = "countainerSignIn__btnToInscription"
-                onClick={redirectionTo(APP_ROUTES.SIGN_UP)}
+                onClick={() => redirectionTo(navigate, APP_ROUTES.SIGN_UP)}
                 >
                 M'inscrire
             </button>
