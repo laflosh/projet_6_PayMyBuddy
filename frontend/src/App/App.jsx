@@ -1,4 +1,3 @@
-import './style/main.scss';
 import { APP_ROUTES} from "./utils/constant.js";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./component/Header/header.jsx";
