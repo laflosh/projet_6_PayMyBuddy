@@ -1,4 +1,4 @@
-const API_URL = "http//localhost:8081";
+const API_URL = "http://localhost:8081";
 
 export const API_ROUTES = {
     LOG_IN:`${API_URL}/login`,
