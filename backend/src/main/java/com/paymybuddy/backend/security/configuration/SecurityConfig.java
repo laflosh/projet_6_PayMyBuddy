@@ -24,12 +24,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	
-        http.csrf(csrf -> csrf.disable()) //à retirer
+        http.cors(Customizer.withDefaults())
+        	.csrf(csrf -> csrf.disable()) //à retirer
         	.authorizeHttpRequests(auth -> auth
+        		.requestMatchers("/login", "/register", "/api/**").permitAll()
         		.requestMatchers("/user").hasRole("USER")
                 .anyRequest().authenticated()// Authentification pour toutes les autres requêtes
             )
-            .formLogin(Customizer.withDefaults())
         	.httpBasic(Customizer.withDefaults());
 
         return http.build();
