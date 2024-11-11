@@ -1,50 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { redirectionTo} from "../../lib/common.js";
-import { APP_ROUTES, API_ROUTES } from "../../utils/constant";
+import { logIn } from "../../lib/request.js";
+import { APP_ROUTES } from "../../utils/constant";
 
 function SignIn(){
 
     const navigate = useNavigate();
     let [email , setEmail] = useState("");
     let [password, setPassword] = useState("");
-
-    async function logIn(event, email, password){
-        event.preventDefault();
-        
-        const logInData = {username : email, password : password}
-        try{
-
-            let response = await fetch(API_ROUTES.LOG_IN ,{
-
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded", 
-                },
-                body: new URLSearchParams(logInData).toString(),
-                credentials: "include"
-
-            })
-
-            if(response.ok){
-
-                const data = await response.json();
-                console.log(data);
-                redirectionTo(navigate, APP_ROUTES.TRANSFER);
-
-            } else {
-
-                console.error("Invalid email or password.");
-
-            }
-
-        } catch(error) {
-            
-            console.error("Failed to log in", error);
-
-        }
-
-    }
 
     return(
 
@@ -63,13 +27,13 @@ function SignIn(){
 
                 <label>
                     <input 
-                        type="text" name="password" id="password" placeholder="Mot de passe" required
+                        type="password" name="password" id="password" placeholder="Mot de passe" required
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
 
                 <button 
-                    onClick={(e) => logIn(e, email, password)}
+                    onClick={(e) => logIn(e, navigate, email, password)}
                 >
                     Se connecter
                 </button>
