@@ -12,22 +12,22 @@ function SignIn(){
 
     return(
 
-        <div className = "countainerSignIn">
+        <div className = "countainer_logIn">
 
             <h1>Pay My Buddy</h1>
 
-            <form className="countainerSignIn__signInForm">
+            <form className="countainer_logIn__signInForm">
 
                 <label>
                     <input 
-                        type="text" name="email" id="email" placeholder="Email" required
+                        type="text" name="email" id="email_logIn" placeholder="Email" required
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </label>
 
                 <label>
                     <input 
-                        type="password" name="password" id="password" placeholder="Mot de passe" required
+                        type="password" name="password" id="password_logIn" placeholder="Mot de passe" required
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
@@ -40,7 +40,7 @@ function SignIn(){
 
             </form>
 
-            <button class = "countainerSignIn__btnToInscription"
+            <button class = "countainer_logIn__btn_ToInscription"
                 onClick={() => redirectionTo(navigate, APP_ROUTES.SIGN_UP)}
                 >
                 M'inscrire
