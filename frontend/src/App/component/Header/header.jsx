@@ -1,9 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { APP_ROUTES } from "../../utils/constant";
+import { logOut } from "../../lib/request";
 
 function Header(){
 
+    const navigate = useNavigate();
     const location = useLocation();
     let [isShow, setIsShow] = useState(true);
 
@@ -44,7 +46,7 @@ function Header(){
                 </a>
 
                 <button
-                    //onClick={() => }
+                    onClick={(e) => logOut(e, navigate)}
                 >
                     Se déconnecter
                 </button>

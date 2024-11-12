@@ -11,8 +11,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import com.paymybuddy.backend.security.service.CustomUserDetailsService;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -38,17 +42,34 @@ public class SecurityConfig {
         		.requestMatchers(HttpMethod.POST, "/api/users").permitAll()
         		.requestMatchers("/api/**").authenticated()
         		.requestMatchers("/login").permitAll()
-        		.requestMatchers("/logout").permitAll()
+        		.requestMatchers("/logout").authenticated()
         		.requestMatchers("/user").hasRole("USER")
                 .anyRequest().authenticated()// Authentification pour toutes les autres requêtes
             )
         	.formLogin((formLogin) -> formLogin
+        			.loginPage("/login")
                     .successHandler(loginSuccessHandler()))
         	.logout((logout) -> logout
-        			.permitAll());
+        			.logoutUrl("/logout")
+        			.logoutSuccessHandler((request, response, authentication) -> {
+        				response.setStatus(HttpServletResponse.SC_OK);
+        			})
+        			.invalidateHttpSession(true)
+        			.deleteCookies("JSESSIONID")
+        		);
+
 
         return http.build();
         
+    }
+    
+    @Bean
+    public HttpFirewall allowSemiColonFirewall() {
+    	StrictHttpFirewall firewall = new StrictHttpFirewall();
+    	
+    	firewall.setAllowSemicolon(true);
+    	
+    	return firewall;
     }
 
     // Gestionnaire d'authentification en mémoire avec BCryptPasswordEncoder pour le cryptage de mots de passe

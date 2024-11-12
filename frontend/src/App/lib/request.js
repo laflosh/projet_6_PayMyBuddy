@@ -8,7 +8,7 @@ export async function logIn(event, navigate, email, password){
     event.preventDefault();
     
     const logInData = {username : email, password : password}
-    
+
     try{
 
         let response = await fetch(API_ROUTES.LOG_IN ,{
@@ -37,6 +37,40 @@ export async function logIn(event, navigate, email, password){
     } catch(error) {
         
         console.error("Failed to log in", error);
+
+    }
+
+}
+
+export async function logOut(event, navigate){
+
+    event.preventDefault();
+
+    try{
+
+        let response = await fetch(API_ROUTES.LOG_OUT ,{
+
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            credentials : "include",
+
+        });
+
+        if(response.ok){
+
+            redirectionTo(navigate, APP_ROUTES.SIGN_IN);
+
+        } else {
+
+            console.error("Something went wrong during  loging out.")
+
+        }
+
+    } catch (error){
+
+        console.error("Can't log out of your session. ", error);
 
     }
 

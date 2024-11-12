@@ -21,9 +21,10 @@
             font-size: 20px;
             font-weight: 700;
             text-decoration: none;
+            cursor: pointer;
             border: 2px solid transparent;
             border-radius: 3.5px;
-            padding: 2.5px;
+            padding: 4px;
 
             &:hover{
                 border-color: black;
