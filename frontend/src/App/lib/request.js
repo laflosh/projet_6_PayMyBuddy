@@ -1,7 +1,7 @@
 //All requests to the Spring Boot backend For the front-end application
 
 import { API_ROUTES, APP_ROUTES } from "../utils/constant";
-import { redirectionTo} from "../lib/common.js";
+import { clearLocalStorage, redirectionTo, setItemInLocalStorage} from "../lib/common.js";
 
 export async function logIn(event, navigate, email, password){
 
@@ -26,6 +26,8 @@ export async function logIn(event, navigate, email, password){
 
             const data = await response.json();
             console.log(data);
+
+            setItemInLocalStorage("connectedUser", data);
             redirectionTo(navigate, APP_ROUTES.TRANSFER);
 
         } else {
@@ -59,6 +61,8 @@ export async function logOut(event, navigate){
         });
 
         if(response.ok){
+
+            clearLocalStorage();
 
             redirectionTo(navigate, APP_ROUTES.SIGN_IN);
 
