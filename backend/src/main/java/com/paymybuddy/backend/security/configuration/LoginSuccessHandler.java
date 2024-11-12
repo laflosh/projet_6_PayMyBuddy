@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paymybuddy.backend.security.CustomUserDetails;
+import com.paymybuddy.backend.security.model.CustomUserDetails;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

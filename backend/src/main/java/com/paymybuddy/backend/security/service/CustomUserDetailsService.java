@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.paymybuddy.backend.model.UserDB;
 import com.paymybuddy.backend.repository.UserRepository;
-import com.paymybuddy.backend.security.CustomUserDetails;
+import com.paymybuddy.backend.security.model.CustomUserDetails;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

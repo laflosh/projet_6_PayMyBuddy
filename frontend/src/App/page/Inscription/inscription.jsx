@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_ROUTES, APP_ROUTES } from "../../utils/constant";
-import { redirectionTo } from "../../lib/common";
+import { createNewUser } from "../../lib/request";
 
 function Inscription(){
 
@@ -9,50 +8,6 @@ function Inscription(){
     let [username, setUsername] = useState();
     let [email, setEmail] = useState();
     let [password, setPassword] = useState();
-
-    async function createNewUser(event, username, email, password, navigate){
-
-        event.preventDefault();
-
-        let dataNewUser = {
-            "username" : username,
-            "email" : email,
-            "password" : password
-        };
-
-        try {
-
-            let response =  await fetch(API_ROUTES.USERS, {
-
-                method : "POST",
-                headers : {
-                    "Content-Type" : "application/json"
-                },
-                body : JSON.stringify(dataNewUser),
-                credentials : "include",
-
-            });
-
-            if(response.status === 201){
-
-                let createdUser = response.json();
-                console.log(createdUser);
-
-                redirectionTo(navigate, APP_ROUTES.SIGN_IN);
-
-            } else {
-
-                console.error("Wrong argument for creating user. Status : " + response.status);
-
-            }
-
-        } catch (error) {
-
-            console.error("Failed to create the user in database.", error);
-
-        }
-
-    }
 
     return(
 
