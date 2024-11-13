@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuthenticatedUser, redirectionTo } from "../../lib/common";
-import { APP_ROUTES } from "../../utils/constant";
+import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo} from "../../lib/common";
+import { getDataOfConnectedUser } from "../../lib/request";
+import { APP_ROUTES} from "../../utils/constant";
 
 
 function Transfer(){
+    const navigate = useNavigate();
 
     const connectedUser = getAuthenticatedUser();
-    const navigate = useNavigate();
+    const userData = getItemInLocalStorage("userData");
+
     let [connection, setConnection] = useState();
     let [description, setDescription] = useState("");
     let [amount, setAmount] = useState(0);
 
     console.log(connectedUser);
+    console.log(userData);
 
     useEffect(() => {
 
@@ -24,6 +28,14 @@ function Transfer(){
         }
 
     });
+
+    useEffect(() => {
+
+        if(userData === null){
+            getDataOfConnectedUser(connectedUser.connectedUserInfo["id"]);
+        }
+
+    })
 
     function handleChangeInputNumber(event){
 

@@ -80,6 +80,36 @@ export async function logOut(event, navigate){
 
 }
 
+export async function getDataOfConnectedUser(id){
+
+    try{
+
+        let response = await fetch(`${API_ROUTES.USERS}/${id}`,{
+
+            method : "GET",
+            credentials: "include"
+
+        } )
+
+        if(response.ok){
+
+            let data = await response.json();
+            setItemInLocalStorage("userData", data);
+
+        } else {
+
+            console.error("Can't find connected user in database.")
+
+        }
+
+    } catch(error) {
+
+        console.error("Can't fetching in the database. ", error);
+
+    }
+
+}
+
 export async function createNewUser(event, username, email, password, navigate){
 
     event.preventDefault();

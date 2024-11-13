@@ -41,15 +41,15 @@ export function getAuthenticatedUser(){
 
     try {
         
-        const connectedUser = getItemInLocalStorage("connectedUser");
+        const connectedUserInfo = getItemInLocalStorage("connectedUser");
 
-        if(!connectedUser){
+        if(!connectedUserInfo){
             return defaultReturnObject;
         }
 
         return {
             "authenticated" : true,
-            "connectedUserInfo" : {connectedUser}
+            connectedUserInfo
         }
 
     } catch (error) {
