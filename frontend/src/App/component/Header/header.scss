@@ -27,12 +27,11 @@
             padding: 4px;
 
             &:hover{
-                border-color: black;
+                color : #207FEE;
             }
 
             &:active{
-                background-color: black;
-                color: white;
+                border-color: black;
             }
         }
 

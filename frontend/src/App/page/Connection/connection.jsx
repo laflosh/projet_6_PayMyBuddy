@@ -14,6 +14,7 @@ function Connection(){
 
         if(connectedUser.authenticated === false){
 
+            console.error("You need to be connected at an account for seeing this page.");
             redirectionTo(navigate, APP_ROUTES.SIGN_IN);
 
         }
