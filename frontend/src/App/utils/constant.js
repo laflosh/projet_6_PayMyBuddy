@@ -6,8 +6,8 @@ export const API_ROUTES = {
     USERS:`${API_URL}/api/users`,
     USER_CONNECTIONS: (id) => `${API_URL}/api/users/${id}/connections`,
     TRANSACTIONS:`${API_URL}/api/transactions`,
-    SENDER_TRANSACTIONS:`${API_URL}/api/transactions/sender/:id`,
-    RECEIVER_TRANSACTIONS:`${API_URL}/api/transactions/receiver/:id`,
+    SENDER_TRANSACTIONS:`${API_URL}/api/transactions/sender/`,
+    RECEIVER_TRANSACTIONS:`${API_URL}/api/transactions/receiver/`,
 };
 
 export const APP_ROUTES = {

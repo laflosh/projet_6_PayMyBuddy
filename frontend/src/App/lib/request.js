@@ -141,6 +141,36 @@ export async function getConnectionsOfConnectedUser(id){
 
 }
 
+export async function getSenderTransactionsOfConnectedUser(id){
+
+    try{
+
+        let response = await fetch(`${API_ROUTES.SENDER_TRANSACTIONS}${id}`, {
+
+            method : "GET",
+            credentials : "include",
+
+        })
+
+        if(response.ok){
+
+            let data = await response.json();
+            setItemInLocalStorage("userSendertransactions", data);
+
+        } else {
+
+            console.error("Can't find user's sender transactions.")
+
+        } 
+
+    } catch(error){
+
+        console.error("Can't find user's connections.");
+
+    }
+
+}
+
 export async function createNewUser(event, username, email, password, navigate){
 
     event.preventDefault();

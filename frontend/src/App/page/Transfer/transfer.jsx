@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo, setItemInLocalStorage} from "../../lib/common";
-import { getDataOfConnectedUser, getConnectionsOfConnectedUser } from "../../lib/request";
+import { getDataOfConnectedUser, getConnectionsOfConnectedUser, getSenderTransactionsOfConnectedUser } from "../../lib/request";
 import { API_ROUTES, APP_ROUTES} from "../../utils/constant";
 
 
@@ -11,6 +11,7 @@ function Transfer(){
     const connectedUser = getAuthenticatedUser();
     let [userData, setUserData] = useState(null);
     let [userConnections, setUserConnections] = useState(null);
+    let [userSenderTransactions, setUserSenderTransactions] = useState(null);
 
     let [connection, setConnection] = useState();
     let [description, setDescription] = useState("");
@@ -19,6 +20,7 @@ function Transfer(){
     console.log(connectedUser);
     console.log(userData);
     console.log(userConnections);
+    console.log(userSenderTransactions);
 
     function handleChangeInputNumber(event){
 
@@ -27,7 +29,7 @@ function Transfer(){
 
     }
 
-    async function fetchData(connectedUser){
+    function fetchData(connectedUser){
 
 
         if(userData === null){
@@ -46,6 +48,16 @@ function Transfer(){
             .then(() => {
                 let cacheUserConnections = getItemInLocalStorage("userConnections");
                 setUserConnections(cacheUserConnections);
+            });
+
+        }
+
+        if(userSenderTransactions === null){
+
+            getSenderTransactionsOfConnectedUser(connectedUser.connectedUserInfo["id"])
+            .then(() => {
+                let cacheUserSenderTransactions = getItemInLocalStorage("userSendertransactions");
+                setUserSenderTransactions(cacheUserSenderTransactions);
             });
 
         }
