@@ -13,11 +13,13 @@ function Transfer(){
     let [userConnections, setUserConnections] = useState(null);
     let [userSenderTransactions, setUserSenderTransactions] = useState(null);
 
+    let [newTransaction, setNewTransaction] = useState(null);
+    let [showResumeTransaction, setShowResumeTransaction] = useState(false);
+
     let [connection, setConnection] = useState();
     let [description, setDescription] = useState("");
     let [amount, setAmount] = useState(0);
 
-    console.log(connectedUser);
 
     function handleChangeInputNumber(event){
 
@@ -111,12 +113,49 @@ function Transfer(){
                 </span>
 
                 <button
-                    onClick={(e) => sendNewTransaction(e, userData.id, connection, description, amount)}
+                    onClick={async (e) => {
+                       let newTransaction = await sendNewTransaction(e, userData.id, connection, description, amount);
+                       setNewTransaction(newTransaction);
+                       setShowResumeTransaction(true);
+                    }}
                 >
                     Payer
                 </button>
 
             </div>
+
+            {newTransaction && showResumeTransaction && 
+                <div 
+                    className={`resume-new-transaction ${showResumeTransaction ? "resume-new-transaction-over" : ""}`}
+                >
+                    <p>Résumé de la transaction :</p>
+
+                    <p>Envoyé par <strong>{newTransaction.sender.username}</strong></p>
+
+                    <p>Reçu par <strong>{newTransaction.receiver.username}</strong></p>
+
+                    <p>D'un montant de <strong>{newTransaction.amount} €</strong></p>
+
+                    <p>Raison : <strong>{newTransaction.description}</strong></p>
+
+                    <button
+                        onClick={() => {
+                            setShowResumeTransaction(false);
+                            setNewTransaction(null);
+
+                            getSenderTransactionsOfConnectedUser(connectedUser.connectedUserInfo.id)
+                            .then(() => {
+                                const cacheUserSenderTransactions = getItemInLocalStorage("userSendertransactions");
+                                setUserSenderTransactions(cacheUserSenderTransactions);
+                            });
+                            window.location.reload();
+                        }}
+                    >
+                        OK
+                    </button>
+
+                </div>
+            }
 
             <div className="resume">
 
