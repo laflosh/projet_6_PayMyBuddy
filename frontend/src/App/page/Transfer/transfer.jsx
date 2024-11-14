@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo} from "../../lib/common";
-import { getDataOfConnectedUser } from "../../lib/request";
-import { APP_ROUTES} from "../../utils/constant";
+import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo, setItemInLocalStorage} from "../../lib/common";
+import { getDataOfConnectedUser, getConnectionsOfConnectedUser } from "../../lib/request";
+import { API_ROUTES, APP_ROUTES} from "../../utils/constant";
 
 
 function Transfer(){
@@ -10,6 +10,7 @@ function Transfer(){
 
     const connectedUser = getAuthenticatedUser();
     let [userData, setUserData] = useState(null);
+    let [userConnections, setUserConnections] = useState(null);
 
     let [connection, setConnection] = useState();
     let [description, setDescription] = useState("");
@@ -17,17 +18,36 @@ function Transfer(){
 
     console.log(connectedUser);
     console.log(userData);
+    console.log(userConnections);
+
+    function handleChangeInputNumber(event){
+
+        let value = event.target.value;
+        setAmount(value);
+
+    }
 
     async function fetchData(connectedUser){
 
 
         if(userData === null){
 
-            await getDataOfConnectedUser(connectedUser.connectedUserInfo["id"]);
-
-            let cacheUserData = getItemInLocalStorage("userData");
-            setUserData(cacheUserData);
+            getDataOfConnectedUser(connectedUser.connectedUserInfo["id"])
+            .then(() => {
+                let cacheUserData = getItemInLocalStorage("userData");
+                setUserData(cacheUserData);
+            });
     
+        }
+
+        if(userConnections === null){
+
+            getConnectionsOfConnectedUser(connectedUser.connectedUserInfo["id"])
+            .then(() => {
+                let cacheUserConnections = getItemInLocalStorage("userConnections");
+                setUserConnections(cacheUserConnections);
+            });
+
         }
 
     }
@@ -48,13 +68,6 @@ function Transfer(){
         fetchData(connectedUser);
 
     })
-
-    function handleChangeInputNumber(event){
-
-        let value = event.target.value;
-        setAmount(value);
-
-    }
 
     return(
 

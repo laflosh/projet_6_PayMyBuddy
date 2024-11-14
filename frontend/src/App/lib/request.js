@@ -109,6 +109,38 @@ export async function getDataOfConnectedUser(id){
 
 }
 
+export async function getConnectionsOfConnectedUser(id){
+
+    let url = API_ROUTES.USER_CONNECTIONS(id);
+
+    try{
+
+        let response = await fetch(url ,{
+
+            method : "GET",
+            credentials : "include",
+
+        })
+
+        if(response.ok){
+
+            let data = await response.json();
+            setItemInLocalStorage("userConnections", data);
+
+        } else {
+
+            console.error("Can't find user's connections.");
+
+        }
+
+    }catch(error){
+
+        console.error("Can't fetching in the database. ", error);
+
+    }
+
+}
+
 export async function createNewUser(event, username, email, password, navigate){
 
     event.preventDefault();
