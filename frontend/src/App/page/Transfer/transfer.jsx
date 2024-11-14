@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo, setItemInLocalStorage} from "../../lib/common";
-import { getDataOfConnectedUser, getConnectionsOfConnectedUser, getSenderTransactionsOfConnectedUser } from "../../lib/request";
+import { getDataOfConnectedUser, getConnectionsOfConnectedUser, getSenderTransactionsOfConnectedUser,sendNewTransaction } from "../../lib/request";
 import { API_ROUTES, APP_ROUTES} from "../../utils/constant";
 
 
@@ -18,9 +18,6 @@ function Transfer(){
     let [amount, setAmount] = useState(0);
 
     console.log(connectedUser);
-    console.log(userData);
-    console.log(userConnections);
-    console.log(userSenderTransactions);
 
     function handleChangeInputNumber(event){
 
@@ -88,7 +85,7 @@ function Transfer(){
             <div className="transaction">
 
                 <select className="transaction__connection"
-                    onChange={(e) => setConnection(e.target.value)}
+                    onChange={(e) => setConnection(parseInt(e.target.value))}
                 >
 
                     <option value="">Sélectionner une relation</option>
@@ -113,7 +110,9 @@ function Transfer(){
                     />
                 </span>
 
-                <button>
+                <button
+                    onClick={(e) => sendNewTransaction(e, userData.id, connection, description, amount)}
+                >
                     Payer
                 </button>
 
@@ -142,7 +141,7 @@ function Transfer(){
 
                                 <th scope="row">{transaction.receiver.username}</th>
                                 <th>{transaction.description}</th>
-                                <th className="resume-amount">{transaction.amont} €</th>
+                                <th className="resume-amount">{transaction.amount} €</th>
 
                             </tr>
                             

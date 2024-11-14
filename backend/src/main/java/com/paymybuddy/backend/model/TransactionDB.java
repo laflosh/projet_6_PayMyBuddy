@@ -43,8 +43,8 @@ public class TransactionDB {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "amont")
-	private double amont;
+	@Column(name = "amount")
+	private double amount;
 	
 	public int getId() {
 		return id;
@@ -78,12 +78,12 @@ public class TransactionDB {
 		this.description = description;
 	}
 
-	public double getAmont() {
-		return amont;
+	public double getAmount() {
+		return amount;
 	}
 
-	public void setAmont(double amont) {
-		this.amont = amont;
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 	
 }

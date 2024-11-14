@@ -50,7 +50,7 @@ public class TransactionControllerTest {
 		testTransactionDTO.setSenderId(1);
 		testTransactionDTO.setReceiverId(2);
 		testTransactionDTO.setDescription(TEST_TRANSACTION_PREFIX + "1");
-		testTransactionDTO.setAmont(100);
+		testTransactionDTO.setAmount(100);
 		
 		//Saving the test entity in the database
 		TransactionDB transaction = transactionService.addANewTransaction(testTransactionDTO);
@@ -106,7 +106,7 @@ public class TransactionControllerTest {
 		newTransactionDTO.setSenderId(1);
 		newTransactionDTO.setReceiverId(2);
 		newTransactionDTO.setDescription(TEST_TRANSACTION_PREFIX + "2");
-		newTransactionDTO.setAmont(100);
+		newTransactionDTO.setAmount(100);
 		
 		String transactionDTOAsString = objectMapper.writeValueAsString(newTransactionDTO);
 		
@@ -143,7 +143,7 @@ public class TransactionControllerTest {
 		testTransactionDTO.setId(testTransaction.getId());
 		testTransactionDTO.setSenderId(testTransaction.getSender().getId());
 		testTransactionDTO.setReceiverId(testTransaction.getReceiver().getId());
-		testTransactionDTO.setAmont(85);
+		testTransactionDTO.setAmount(85);
 		
 		String transactionDTOAsString = objectMapper.writeValueAsString(testTransactionDTO);
 		
@@ -177,7 +177,7 @@ public class TransactionControllerTest {
 		testTransactionDTO.setSenderId(testTransaction.getSender().getId());
 		testTransactionDTO.setReceiverId(testTransaction.getReceiver().getId());
 		testTransactionDTO.setDescription(testTransaction.getDescription());
-		testTransactionDTO.setAmont(testTransaction.getAmont());
+		testTransactionDTO.setAmount(testTransaction.getAmount());
 		
 		String transactionDTOAsString = objectMapper.writeValueAsString(testTransactionDTO);
 		//Testing request

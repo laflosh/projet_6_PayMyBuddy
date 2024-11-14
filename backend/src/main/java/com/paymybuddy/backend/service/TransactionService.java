@@ -139,7 +139,7 @@ public class TransactionService {
 			senderTransactionDTO.setTransactionId(transaction.getId());
 			senderTransactionDTO.setReceiver(transaction.getReceiver());
 			senderTransactionDTO.setDescription(transaction.getDescription());
-			senderTransactionDTO.setAmont(transaction.getAmont());
+			senderTransactionDTO.setAmount(transaction.getAmount());
 			
 			senderTransactionsList.add(senderTransactionDTO);
 		});
@@ -164,7 +164,7 @@ public class TransactionService {
 			receiverTransactionDTO.setTransactionId(transaction.getId());
 			receiverTransactionDTO.setSender(transaction.getSender());
 			receiverTransactionDTO.setDescription(transaction.getDescription());
-			receiverTransactionDTO.setAmont(transaction.getAmont());
+			receiverTransactionDTO.setAmount(transaction.getAmount());
 			
 			receiverTransactionsList.add(receiverTransactionDTO);
 		});
@@ -195,7 +195,7 @@ public class TransactionService {
 		transaction.setSender(sender);
 		transaction.setReceiver(receiver);
 		transaction.setDescription(transactionDTO.getDescription());
-		transaction.setAmont(transactionDTO.getAmont()); 
+		transaction.setAmount(transactionDTO.getAmount()); 
 		
 		return transaction;
 		

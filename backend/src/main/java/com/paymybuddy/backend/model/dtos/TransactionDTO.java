@@ -10,7 +10,7 @@ public class TransactionDTO {
 	
 	private String description;
 	
-	private double amont;
+	private double amount;
 	
 	public Integer getId() {
 		return id;
@@ -44,12 +44,12 @@ public class TransactionDTO {
 		this.description = description;
 	}
 
-	public double getAmont() {
-		return amont;
+	public double getAmount() {
+		return amount;
 	}
 
-	public void setAmont(double amont) {
-		this.amont = amont;
+	public void setAmount(double amont) {
+		this.amount = amont;
 	}
 	
 }
