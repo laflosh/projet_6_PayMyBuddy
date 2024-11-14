@@ -97,6 +97,12 @@
                 flex-direction: row;
                 justify-content: space-between;
                 padding: 12px 0;
+                th{
+                    width: 120px;
+                    display: flex;
+                    justify-content: flex-start;
+                    
+                }
 
             }
 
@@ -115,6 +121,10 @@
                     th{
                         font-weight: 400;
                         font-size: 24px;  
+                    }
+
+                    .resume-amount{
+                        justify-content: flex-end;
                     }
                 }
             }

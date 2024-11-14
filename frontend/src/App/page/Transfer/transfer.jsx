@@ -34,9 +34,9 @@ function Transfer(){
 
         if(userData === null){
 
-            getDataOfConnectedUser(connectedUser.connectedUserInfo["id"])
+            getDataOfConnectedUser(connectedUser.connectedUserInfo.id)
             .then(() => {
-                let cacheUserData = getItemInLocalStorage("userData");
+                const cacheUserData = getItemInLocalStorage("userData");
                 setUserData(cacheUserData);
             });
     
@@ -44,9 +44,9 @@ function Transfer(){
 
         if(userConnections === null){
 
-            getConnectionsOfConnectedUser(connectedUser.connectedUserInfo["id"])
+            getConnectionsOfConnectedUser(connectedUser.connectedUserInfo.id)
             .then(() => {
-                let cacheUserConnections = getItemInLocalStorage("userConnections");
+                const cacheUserConnections = getItemInLocalStorage("userConnections");
                 setUserConnections(cacheUserConnections);
             });
 
@@ -54,9 +54,9 @@ function Transfer(){
 
         if(userSenderTransactions === null){
 
-            getSenderTransactionsOfConnectedUser(connectedUser.connectedUserInfo["id"])
+            getSenderTransactionsOfConnectedUser(connectedUser.connectedUserInfo.id)
             .then(() => {
-                let cacheUserSenderTransactions = getItemInLocalStorage("userSendertransactions");
+                const cacheUserSenderTransactions = getItemInLocalStorage("userSendertransactions");
                 setUserSenderTransactions(cacheUserSenderTransactions);
             });
 
@@ -92,6 +92,11 @@ function Transfer(){
                 >
 
                     <option value="">Sélectionner une relation</option>
+                    {userConnections && userConnections.map((connection, index) => (
+
+                        <option key={index} value={connection.id}>{connection.username}</option>
+
+                    ))}
 
                 </select>
 
@@ -132,11 +137,16 @@ function Transfer(){
 
                     <tbody>
 
-                        <tr>
-                            <th scope="row">texte</th>
-                            <th>texte</th>
-                            <th>montant</th>
-                        </tr>
+                        {userSenderTransactions && userSenderTransactions.map((transaction, index) => (
+                            <tr key={index}>
+
+                                <th scope="row">{transaction.receiver.username}</th>
+                                <th>{transaction.description}</th>
+                                <th className="resume-amount">{transaction.amont} €</th>
+
+                            </tr>
+                            
+                        ))}
 
                     </tbody>
 
