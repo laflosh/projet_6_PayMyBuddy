@@ -25,7 +25,6 @@ export async function logIn(event, navigate, email, password){
         if(response.ok){
 
             const data = await response.json();
-            console.log(data);
 
             setItemInLocalStorage("connectedUser", data);
             redirectionTo(navigate, APP_ROUTES.TRANSFER);

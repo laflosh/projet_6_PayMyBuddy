@@ -9,7 +9,7 @@ function Transfer(){
     const navigate = useNavigate();
 
     const connectedUser = getAuthenticatedUser();
-    const userData = getItemInLocalStorage("userData");
+    let [userData, setUserData] = useState(null);
 
     let [connection, setConnection] = useState();
     let [description, setDescription] = useState("");
@@ -17,6 +17,20 @@ function Transfer(){
 
     console.log(connectedUser);
     console.log(userData);
+
+    async function fetchData(connectedUser){
+
+
+        if(userData === null){
+
+            await getDataOfConnectedUser(connectedUser.connectedUserInfo["id"]);
+
+            let cacheUserData = getItemInLocalStorage("userData");
+            setUserData(cacheUserData);
+    
+        }
+
+    }
 
     useEffect(() => {
 
@@ -31,9 +45,7 @@ function Transfer(){
 
     useEffect(() => {
 
-        if(userData === null){
-            getDataOfConnectedUser(connectedUser.connectedUserInfo["id"]);
-        }
+        fetchData(connectedUser);
 
     })
 
