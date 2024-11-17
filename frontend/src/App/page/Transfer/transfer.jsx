@@ -80,6 +80,8 @@ function Transfer(){
 
     })
 
+    console.log(userData);
+
     return(
 
         <div className="countainer_transfer">

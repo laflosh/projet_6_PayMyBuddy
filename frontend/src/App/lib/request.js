@@ -215,6 +215,49 @@ export async function createNewUser(event, username, email, password, navigate){
 
 }
 
+export async function updateUserConnectedInfo(event, userId, newUsername, newEmail, newPassword){
+
+    event.preventDefault();
+
+    let updateData = {
+        "id" : userId,
+        "username" : newUsername,
+        "email" : newEmail,
+        "password" : newPassword,
+    };
+
+    try{
+
+        let response = await fetch(API_ROUTES.USERS,{
+
+            method : "PUT",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify(updateData),
+            credentials : "include",
+
+        });
+
+        if(response.status === 201){
+
+            let data = await response.json();
+            setItemInLocalStorage("userData", data);
+
+        } else {
+
+            console.error("Can't updated the user. Status", response.status);
+
+        }
+
+    } catch(error){
+
+        console.error("Failed to update the connected User. ", error);
+
+    };
+
+};
+
 export async function sendNewTransaction(event, senderId, receiverId, description, amount){
     event.preventDefault();
 

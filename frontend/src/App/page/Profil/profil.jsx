@@ -1,7 +1,8 @@
 /* eslint-disable no-template-curly-in-string */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo } from "../../lib/common";
+import { updateUserConnectedInfo } from "../../lib/request";
 import { APP_ROUTES } from "../../utils/constant";
 
 function Profil(){
@@ -11,7 +12,9 @@ function Profil(){
 
     let userData = getItemInLocalStorage("userData");
 
-    console.log(userData);
+    let [username, setUsername] = useState();
+    let [email, setEmail] = useState();
+    let [password, setPassword] = useState();
 
     useEffect(() => {
 
@@ -20,15 +23,9 @@ function Profil(){
             console.error("You need to be connected at an account for seeing this page.");
             redirectionTo(navigate, APP_ROUTES.SIGN_IN);
 
-        }
+        };
 
     });
-
-    async function updateUserConnectedInfo(){
-
-        
-
-    }
 
     return(
 
@@ -41,21 +38,30 @@ function Profil(){
                     <div>
 
                         <label for="username">Username</label>
-                        <input type="text" name="username" id="username_profil" placeholder={`@${userData.username || ""}`}/>
+                        <input 
+                            type="text" name="username" id="username_profil" placeholder={`@${userData.username || ""}`}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
 
                     </div>
 
                     <div>
 
                         <label for="email">Mail</label>
-                        <input type="email" name="email" id="email_profil" placeholder={`@${userData.email || ""}`}/>
+                        <input 
+                            type="email" name="email" id="email_profil" placeholder={`${userData.email || ""}`}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
                     </div>
 
                     <div>
 
                         <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password_profil" placeholder="nouveau mot de passe"/>
+                        <input 
+                            type="password" name="password" id="password_profil" placeholder="nouveau mot de passe"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
                     </div>
 
@@ -63,7 +69,11 @@ function Profil(){
 
                 <div className="countainer_profil__form-btn">
 
-                    <button className="btn_update_profil">
+                    <button className="btn_update_profil"
+                        onClick={(e) => {
+                            updateUserConnectedInfo(e, userData.id, username, email, password)
+                        }}
+                    >
                         Modifier
                     </button>
 
