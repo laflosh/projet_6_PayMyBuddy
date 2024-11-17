@@ -62,7 +62,47 @@ public class UserService {
 	 */
 	public UserDB updateAExistingUser(UserDB user) {
 		
-		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		UserDB existingUser = getOneUserById(user.getId());
+		
+		if(user.getUsername() == null) {
+			
+			user.setUsername(existingUser.getUsername());
+			
+		}
+		
+		if(user.getEmail() == null) {
+			
+			user.setEmail(existingUser.getEmail());
+			
+		}
+		
+		if(user.getPassword() != null) {
+		
+			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			
+		} else {
+			
+			user.setPassword(existingUser.getPassword());
+			
+		}
+		
+		if(user.getConnections()== null) {
+			
+			user.setConnections(existingUser.getConnections());
+			
+		}
+		
+		if(user.getTransactionSender() == null){
+			
+			user.setTransactionSender(existingUser.getTransactionSender());
+			
+		}
+		
+		if(user.getTransactionReceiver() == null) {
+			
+			user.setTransactionReceiver(existingUser.getTransactionReceiver());
+			
+		}
 		
 		log.info("Updating the user in the database with id : {}", user.getId());
 		return userRepository.save(user);

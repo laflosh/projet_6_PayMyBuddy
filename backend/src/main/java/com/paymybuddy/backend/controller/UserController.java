@@ -96,7 +96,7 @@ public class UserController {
 		try {
 			log.info("Trying to updating an existing user in database with id : {} .", user.getId());
 			
-			UserDB updatedUser = userService.addNewUser(user);
+			UserDB updatedUser = userService.updateAExistingUser(user);
 			
 			return ResponseEntity.status(HttpStatus.CREATED).body(updatedUser);
 		} catch(Exception e) {
