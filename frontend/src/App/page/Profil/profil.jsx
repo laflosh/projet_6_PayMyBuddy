@@ -16,6 +16,9 @@ function Profil(){
     let [email, setEmail] = useState();
     let [password, setPassword] = useState();
 
+    let [message, setMessage] = useState("");
+    let [showMessageUpdate, setShowMessageUpdate] = useState(false);
+
     useEffect(() => {
 
         if(connectedUser.authenticated === false){
@@ -26,6 +29,27 @@ function Profil(){
         };
 
     });
+
+    function updatedMessage(message){
+
+        setTimeout(() => {
+
+            setShowMessageUpdate(false);
+            setMessage("");
+
+        }, 5000);
+
+        return(
+
+            <div className="update_message">
+
+                <p>{message}</p>
+
+            </div>
+
+        );
+
+    }
 
     return(
 
@@ -72,7 +96,11 @@ function Profil(){
                     <button className="btn_update_profil"
                         onClick={(e) => {
                             updateUserConnectedInfo(e, userData.id, username, email, password)
-                        }}
+                            .then(() => {
+                                setMessage("Le profil a bien été mise à jour !");
+                                setShowMessageUpdate(true)});
+                            }
+                        }
                     >
                         Modifier
                     </button>
@@ -80,6 +108,8 @@ function Profil(){
                 </div>
 
             </form>
+
+            {showMessageUpdate && updatedMessage(message)}
 
         </div>
 
