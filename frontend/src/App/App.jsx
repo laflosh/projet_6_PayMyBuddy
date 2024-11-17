@@ -5,7 +5,7 @@ import Footer from "./component/Footer/footer.jsx";
 import SignIn from "./page/SignIn/signIn.jsx";
 import Inscription from "./page/Inscription/inscription.jsx";
 import Transfer from "./page/Transfer/transfer.jsx";
-import Profil from "./page/Transfer/transfer.jsx";
+import Profil from "./page/Profil/profil.jsx";
 import Connection from "./page/Connection/connection.jsx";
 import Error from "./page/Error/error.jsx";
 

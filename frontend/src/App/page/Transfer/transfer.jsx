@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo, setItemInLocalStorage} from "../../lib/common";
+import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo} from "../../lib/common";
 import { getDataOfConnectedUser, getConnectionsOfConnectedUser, getSenderTransactionsOfConnectedUser,sendNewTransaction } from "../../lib/request";
-import { API_ROUTES, APP_ROUTES} from "../../utils/constant";
+import {APP_ROUTES} from "../../utils/constant";
 
 
 function Transfer(){
@@ -75,7 +75,7 @@ function Transfer(){
     });
 
     useEffect(() => {
-
+        
         fetchData(connectedUser);
 
     })
@@ -196,6 +196,6 @@ function Transfer(){
 
     );
 
-}
+};
 
 export default Transfer;
