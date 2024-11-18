@@ -31,6 +31,32 @@ function Profil(){
 
     });
 
+    function deleteMessage(message){
+
+        return(
+
+            <div className="delete_message">
+
+                <p>{message}</p>
+
+                <button
+                    onClick={(e) => {
+                        deleteAnUser(e, navigate, userData.id)
+                        .then(() =>{
+                            setMessage("");
+                            setShowMessageDelete(false);
+                        });
+                    }}
+                >
+                    Oui
+                </button>
+
+            </div>
+
+        );
+
+    }
+
     function updatedMessage(message){
 
         setTimeout(() => {
@@ -107,7 +133,12 @@ function Profil(){
                     </button>
 
                     <button className="btn_delete_profil"
-                        onClick={(e) => deleteAnUser(e, navigate, userData.id)}
+                        onClick={(e) => {
+                            e.preventDefault();
+
+                            setMessage("Etes vous sûr de vouloir supprimer votre profil ? 😦");
+                            setShowMessageDelete(true);
+                        }}
                     >
                         Supprimer profil
                     </button>
@@ -117,6 +148,8 @@ function Profil(){
             </form>
 
             {showMessageUpdate && updatedMessage(message)}
+
+            {showMessagDelete && deleteMessage(message)}
 
         </div>
 

@@ -88,4 +88,35 @@
             font-weight: 600;
         }
     }
+
+    .delete_message{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 550px;
+        background-color: #8B0000;
+        color: white;
+        margin-top: 30px;
+        border: solid 1px black;
+        border-radius: 8px;
+
+        p{
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        button{
+            width: 100px;
+            height: 44px;
+            color: white;
+            background-color: red;
+            border: solid 1px black;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 20px 0px;
+        }
+    }
 }
