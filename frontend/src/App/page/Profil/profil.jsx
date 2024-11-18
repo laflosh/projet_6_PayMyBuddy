@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo } from "../../lib/common";
-import { updateUserConnectedInfo } from "../../lib/request";
+import { updateUserConnectedInfo, deleteAnUser } from "../../lib/request";
 import { APP_ROUTES } from "../../utils/constant";
 
 function Profil(){
@@ -18,6 +18,7 @@ function Profil(){
 
     let [message, setMessage] = useState("");
     let [showMessageUpdate, setShowMessageUpdate] = useState(false);
+    let [showMessagDelete, setShowMessageDelete] = useState(false);
 
     useEffect(() => {
 
@@ -103,6 +104,12 @@ function Profil(){
                         }
                     >
                         Modifier
+                    </button>
+
+                    <button className="btn_delete_profil"
+                        onClick={(e) => deleteAnUser(e, navigate, userData.id)}
+                    >
+                        Supprimer profil
                     </button>
 
                 </div>

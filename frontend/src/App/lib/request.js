@@ -258,6 +258,42 @@ export async function updateUserConnectedInfo(event, userId, newUsername, newEma
 
 };
 
+export async function deleteAnUser(event, navigate, userId){
+
+    event.preventDefault();
+
+    let url = `${API_ROUTES.USERS}/${userId}`;
+
+    try {
+
+        let response = await fetch(url, {
+
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json",
+            },
+            credentials : "include",
+
+        });
+
+        if(response.status === 204) {
+
+            redirectionTo(navigate, APP_ROUTES.SIGN_IN);
+
+        } else {
+
+            console.error("Can't delete an existing user. Status ", response.status);
+
+        }
+
+    } catch(error) {
+
+        console.error("Failure delete the user in database. ", error);
+
+    }
+
+}
+
 export async function sendNewTransaction(event, senderId, receiverId, description, amount){
     event.preventDefault();
 

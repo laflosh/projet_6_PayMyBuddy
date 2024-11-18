@@ -95,7 +95,7 @@ function Transfer(){
                     <option value="">Sélectionner une relation</option>
                     {userConnections && userConnections.map((connection, index) => (
 
-                        <option key={index} value={connection.id}>{connection.username}</option>
+                        <option key={index} value={connection.id}>{connection.email}</option>
 
                     ))}
 
