@@ -21,6 +21,29 @@ function Connection(){
 
     });
 
+    return(
+
+        <div className="countainer_connection">
+
+            <div className="search_connection">
+
+                <label for="email">Chercher une relation</label>
+                <input type="email" name="email" id="email_connection" placeholder="Saisir une adresse mail"/>
+
+            </div>
+
+            <div className="btn_action">
+
+                <button className="btn_action__add_connection">
+                    Ajouter
+                </button>
+
+            </div>
+
+        </div>
+
+    );
+
 }
 
 export default Connection

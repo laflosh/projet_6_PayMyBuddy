@@ -1,0 +1,53 @@
+.countainer_connection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 180px;
+
+    .search_connection{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: start;
+        gap: 10px;
+
+        label{
+            width: 484px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        input{
+            width: 484px;
+            height: 54px;
+            border-radius: 8px;
+            border: solid 1px #E0E0E0;
+            padding-left: 20px;
+        }
+
+        ::placeholder{
+            color: #828282;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    }
+
+    .btn_action{
+        display: flex;
+        flex-direction: row;
+
+        &__add_connection{
+            width: 151px;
+            height: 62px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            background-color: #F69F1D;
+            font-size: 24px;
+            font-weight: 500;
+        }
+    }
+}
