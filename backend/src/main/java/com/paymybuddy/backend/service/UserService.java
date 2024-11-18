@@ -64,48 +64,44 @@ public class UserService {
 		
 		UserDB existingUser = getOneUserById(user.getId());
 		
-		if(user.getUsername() == null) {
+		if(user.getUsername() != null) {
 			
-			user.setUsername(existingUser.getUsername());
+			existingUser.setUsername(user.getUsername());
 			
 		}
 		
-		if(user.getEmail() == null) {
+		if(user.getEmail() != null) {
 			
-			user.setEmail(existingUser.getEmail());
+			existingUser.setEmail(user.getEmail());
 			
 		}
 		
 		if(user.getPassword() != null) {
 		
-			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-			
-		} else {
-			
-			user.setPassword(existingUser.getPassword());
+			existingUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 			
 		}
 		
-		if(user.getConnections()== null) {
+		if(user.getConnections() != null && !user.getConnections().isEmpty()) {
 			
-			user.setConnections(existingUser.getConnections());
-			
-		}
-		
-		if(user.getTransactionSender() == null){
-			
-			user.setTransactionSender(existingUser.getTransactionSender());
+			existingUser.setConnections(user.getConnections());
 			
 		}
 		
-		if(user.getTransactionReceiver() == null) {
+		if(user.getTransactionSender() != null && !user.getTransactionSender().isEmpty()){
 			
-			user.setTransactionReceiver(existingUser.getTransactionReceiver());
+			existingUser.setTransactionSender(user.getTransactionSender());
 			
 		}
 		
-		log.info("Updating the user in the database with id : {}", user.getId());
-		return userRepository.save(user);
+		if(user.getTransactionReceiver() != null && !user.getTransactionReceiver().isEmpty()) {
+			
+			existingUser.setTransactionReceiver(user.getTransactionReceiver());
+			
+		}
+		
+		log.info("Updating the user in the database with id : {}", existingUser.getId());
+		return userRepository.save(existingUser);
 		
 	}
 	
