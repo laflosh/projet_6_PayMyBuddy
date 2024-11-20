@@ -78,7 +78,7 @@ function Transfer(){
         
         fetchData(connectedUser);
 
-    })
+    });
 
     console.log(userData);
 
