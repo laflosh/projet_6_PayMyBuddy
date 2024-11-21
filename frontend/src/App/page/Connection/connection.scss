@@ -11,6 +11,7 @@
         align-items: center;
         gap: 20px;
         margin-top: 180px;
+        margin-left : 95px;
 
         .search_connection{
             display: flex;
@@ -45,6 +46,7 @@
         .btn_action{
             display: flex;
             flex-direction: row;
+            gap: 20px;
     
             &__add_connection{
                 width: 151px;
@@ -53,6 +55,17 @@
                 border-radius: 8px;
                 color: white;
                 background-color: #F69F1D;
+                font-size: 24px;
+                font-weight: 500;
+            }
+
+            &__delete_connection{
+                width: 151px;
+                height: 62px;
+                border: none;
+                border-radius: 8px;
+                color: white;
+                background-color: red;
                 font-size: 24px;
                 font-weight: 500;
             }

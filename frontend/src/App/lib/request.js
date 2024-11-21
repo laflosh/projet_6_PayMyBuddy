@@ -1,7 +1,7 @@
 //All requests to the Spring Boot backend For the front-end application
 
 import { API_ROUTES, APP_ROUTES } from "../utils/constant";
-import { clearLocalStorage, redirectionTo, setItemInLocalStorage} from "../lib/common.js";
+import { clearLocalStorage, redirectionTo, setItemInLocalStorage, findConnectionByEmail} from "../lib/common.js";
 
 export async function logIn(event, navigate, email, password){
 
@@ -141,6 +141,121 @@ export async function getConnectionsOfConnectedUser(id){
 
 }
 
+
+export async function deleteAnUser(event, navigate, userId){
+
+    event.preventDefault();
+
+    let url = `${API_ROUTES.USERS}/${userId}`;
+
+    try {
+
+        let response = await fetch(url, {
+
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json",
+            },
+            credentials : "include",
+
+        });
+
+        if(response.status === 204) {
+
+            redirectionTo(navigate, APP_ROUTES.SIGN_IN);
+
+        } else {
+
+            console.error("Can't delete an existing user. Status ", response.status);
+
+        }
+
+    } catch(error) {
+
+        console.error("Failure delete the user in database. ", error);
+
+    }
+
+}
+
+export async function addNewConnectionForConnectedUser(event, email, userId){
+
+    event.preventDefault();
+
+    let url = API_ROUTES.USER_CONNECTIONS(userId);
+    try {
+
+        let response = await fetch(url, {
+
+            method : "POST",
+            headers : {
+
+                "Content-Type" : "text/plain",
+
+            },
+            body : email,
+            credentials : "include",
+
+        })
+
+        if(response.status === 201){
+
+            let data = await response.json();
+
+            setItemInLocalStorage("userConnections", data);
+
+        } else {
+
+            console.error("Can't add the connection. Status ", response.status);
+
+        }
+
+    } catch (error) {
+        
+        console.error("Failure to add connection to an user", error)
+
+    }
+
+};
+
+export async function deleteConnectionOfAConnectedUser(event, userId, email){
+
+    event.preventDefault();
+
+    let connection = findConnectionByEmail(email);
+
+    let url = API_ROUTES.USER_CONNECTIONS(userId);
+
+    try{
+
+        let response = await fetch(`${url}/${connection.id}`, {
+
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json",
+            },
+            credentials : "include",
+
+        })
+
+        if(response.status === 204){
+
+            getConnectionsOfConnectedUser(userId);
+
+        } else {
+
+            console.error("Can't delete the connection. Status ", response.status);
+
+        }
+
+    } catch (error){
+
+        console.error("Failed to delete the connection of the connected user", error);
+
+    }
+
+};
+
 export async function getSenderTransactionsOfConnectedUser(id){
 
     try{
@@ -255,82 +370,6 @@ export async function updateUserConnectedInfo(event, userId, newUsername, newEma
         console.error("Failed to update the connected User. ", error);
 
     };
-
-};
-
-export async function deleteAnUser(event, navigate, userId){
-
-    event.preventDefault();
-
-    let url = `${API_ROUTES.USERS}/${userId}`;
-
-    try {
-
-        let response = await fetch(url, {
-
-            method : "DELETE",
-            headers : {
-                "Content-Type" : "application/json",
-            },
-            credentials : "include",
-
-        });
-
-        if(response.status === 204) {
-
-            redirectionTo(navigate, APP_ROUTES.SIGN_IN);
-
-        } else {
-
-            console.error("Can't delete an existing user. Status ", response.status);
-
-        }
-
-    } catch(error) {
-
-        console.error("Failure delete the user in database. ", error);
-
-    }
-
-}
-
-export async function addNewConnectionForConnectedUser(event, email, userId){
-
-    event.preventDefault();
-
-    let url = API_ROUTES.USER_CONNECTIONS(userId);
-    try {
-
-        let response = await fetch(url, {
-
-            method : "POST",
-            headers : {
-
-                "Content-Type" : "text/plain",
-
-            },
-            body : email,
-            credentials : "include",
-
-        })
-
-        if(response.status === 201){
-
-            let data = await response.json();
-
-            setItemInLocalStorage("userConnections", data);
-
-        } else {
-
-            console.error("Can't add the connection. Status ", response.status);
-
-        }
-
-    } catch (error) {
-        
-        console.error("Failure to add connection to an user", error)
-
-    }
 
 };
 

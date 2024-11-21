@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, redirectionTo, getItemInLocalStorage } from "../../lib/common";
-import { addNewConnectionForConnectedUser } from "../../lib/request.js";
+import { addNewConnectionForConnectedUser, deleteConnectionOfAConnectedUser } from "../../lib/request.js";
 import { APP_ROUTES } from "../../utils/constant";
 
 function Connection(){
@@ -12,6 +12,7 @@ function Connection(){
 
     let [emailConnection, setEmailConnection] = useState("");
     let [showAddMessage, setShowAddMessage] = useState(false);
+    let [showDeleteMessage, setShowDeleteMessage] = useState(false);
 
     console.log(connectedUser);
 
@@ -32,7 +33,7 @@ function Connection(){
 
         setShowAddMessage(false);
 
-       }, 30000)
+       }, 3000)
 
         return(
 
@@ -44,7 +45,7 @@ function Connection(){
 
         )
 
-    }
+    };
 
     return(
 
@@ -71,6 +72,14 @@ function Connection(){
                         }}
                     >
                         Ajouter
+                    </button>
+
+                    <button className="btn_action__delete_connection"
+                        onClick={(e) => {
+                            deleteConnectionOfAConnectedUser(e, userData.id, emailConnection);
+                        }}
+                    >
+                        Supprimer
                     </button>
 
                 </div>

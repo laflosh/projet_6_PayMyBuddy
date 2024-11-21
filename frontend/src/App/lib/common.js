@@ -60,3 +60,14 @@ export function getAuthenticatedUser(){
     }
 
 }
+
+export function findConnectionByEmail(email){
+
+    let connections = getItemInLocalStorage("userConnections");
+    let connection = connections.find((connection) => {
+        return connection.email === email
+    });
+
+    return connection;
+
+};
