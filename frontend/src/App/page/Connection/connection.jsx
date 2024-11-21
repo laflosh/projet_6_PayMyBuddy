@@ -11,6 +11,7 @@ function Connection(){
     const navigate = useNavigate();
 
     let [emailConnection, setEmailConnection] = useState("");
+    let [showAddMessage, setShowAddMessage] = useState(false);
 
     console.log(connectedUser);
 
@@ -25,29 +26,58 @@ function Connection(){
 
     });
 
+    function messageAddConnection(){
+        
+       setTimeout(() => {
+
+        setShowAddMessage(false);
+
+       }, 30000)
+
+        return(
+
+            <div className="add_connection_message">
+
+                <p>La relation a bien été ajouter à votre compte !</p>
+
+            </div>
+
+        )
+
+    }
+
     return(
 
         <div className="countainer_connection">
 
-            <div className="search_connection">
+            <div className="content">
 
-                <label for="email">Chercher une relation</label>
-                <input 
-                    type="email" name="email" id="email_connection" placeholder="Saisir une adresse mail" required
-                    onChange={(e) => setEmailConnection(e.target.value)}
-                />
+                <div className="search_connection">
+
+                    <label for="email">Chercher une relation</label>
+                    <input 
+                        type="email" name="email" id="email_connection" placeholder="Saisir une adresse mail" required
+                        onChange={(e) => setEmailConnection(e.target.value)}
+                    />
+
+                </div>
+
+                <div className="btn_action">
+
+                    <button className="btn_action__add_connection"
+                        onClick={(e) => {
+                            addNewConnectionForConnectedUser(e, emailConnection, userData.id)
+                            .then(() => setShowAddMessage(true));
+                        }}
+                    >
+                        Ajouter
+                    </button>
+
+                </div>
 
             </div>
 
-            <div className="btn_action">
-
-                <button className="btn_action__add_connection"
-                    onClick={(e) => addNewConnectionForConnectedUser(e, emailConnection, userData.id)}
-                >
-                    Ajouter
-                </button>
-
-            </div>
+            {showAddMessage && messageAddConnection()}
 
         </div>
 
