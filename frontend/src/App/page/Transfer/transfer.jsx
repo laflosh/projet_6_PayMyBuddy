@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo} from "../../lib/common";
-import { getDataOfConnectedUser, getConnectionsOfConnectedUser, getSenderTransactionsOfConnectedUser,sendNewTransaction } from "../../lib/request";
+import { getDataOfConnectedUser } from "../../lib/request/user";
+import { getConnectionsOfConnectedUser } from "../../lib/request/connection"
+import { getSenderTransactionsOfConnectedUser,sendNewTransaction } from "../../lib/request/transaction";
 import {APP_ROUTES} from "../../utils/constant";
 
 

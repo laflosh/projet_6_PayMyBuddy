@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, redirectionTo, getItemInLocalStorage } from "../../lib/common";
-import { addNewConnectionForConnectedUser, deleteConnectionOfAConnectedUser } from "../../lib/request.js";
+import { addNewConnectionForConnectedUser, deleteConnectionOfAConnectedUser } from "../../lib/request/connection";
 import { APP_ROUTES } from "../../utils/constant";
 
 function Connection(){

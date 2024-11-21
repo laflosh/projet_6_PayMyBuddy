@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { APP_ROUTES } from "../../utils/constant";
-import { logOut } from "../../lib/request";
+import { logOut } from "../../lib/request/log";
 
 function Header(){
 

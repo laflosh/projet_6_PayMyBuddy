@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { redirectionTo} from "../../lib/common.js";
-import { logIn } from "../../lib/request.js";
+import { logIn } from "../../lib/request/log.js";
 import { APP_ROUTES } from "../../utils/constant";
 
 function SignIn(){

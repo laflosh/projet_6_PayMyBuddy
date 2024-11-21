@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuthenticatedUser, getItemInLocalStorage, redirectionTo } from "../../lib/common";
-import { updateUserConnectedInfo, deleteAnUser } from "../../lib/request";
+import { updateUserConnectedInfo, deleteAnUser } from "../../lib/request/user";
 import { APP_ROUTES } from "../../utils/constant";
 
 function Profil(){

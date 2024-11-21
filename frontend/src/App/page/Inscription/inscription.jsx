@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createNewUser } from "../../lib/request";
+import { createNewUser } from "../../lib/request/user";
 
 function Inscription(){
 
