@@ -47,6 +47,42 @@ function Connection(){
 
     };
 
+    function messageDeleteConnection(email){
+
+        return(
+
+            <div  className="delete_connection_message">
+
+                <p>Etes-vous sûr de vouloir supprimer <strong>{email}</strong> de vos relations ?</p>
+
+                <div>
+
+                    <button
+                        onClick={(e) => {
+                            deleteConnectionOfAConnectedUser(e, userData.id, emailConnection)
+                            .then(() => {
+                                setShowDeleteMessage(false)
+                                window.location.reload();
+                            })
+                        }}
+                    >
+                        Oui
+                    </button>
+
+                    <button
+                        onClick={() => setShowDeleteMessage(false)}
+                    >
+                        Non
+                    </button>
+
+                </div>
+
+            </div>
+
+        )
+
+    }
+
     return(
 
         <div className="countainer_connection">
@@ -75,8 +111,8 @@ function Connection(){
                     </button>
 
                     <button className="btn_action__delete_connection"
-                        onClick={(e) => {
-                            deleteConnectionOfAConnectedUser(e, userData.id, emailConnection);
+                        onClick={() => {
+                            setShowDeleteMessage(true)
                         }}
                     >
                         Supprimer
@@ -87,6 +123,8 @@ function Connection(){
             </div>
 
             {showAddMessage && messageAddConnection()}
+
+            {showDeleteMessage && messageDeleteConnection(emailConnection)}
 
         </div>
 
