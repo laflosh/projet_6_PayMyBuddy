@@ -78,18 +78,6 @@
         align-items: center;
         background-color: #E0E0E0;
         border-radius: 8px;
-    
-        max-height: 0;
-        padding: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 1s ease, opacity 1s ease;
-    
-        &.resume-new-transaction-over {
-            max-height: 500px; /* Ajustez selon le contenu */
-            padding: 30px 0; 
-            opacity: 1;
-        }
 
         p{
             width: 300px;
