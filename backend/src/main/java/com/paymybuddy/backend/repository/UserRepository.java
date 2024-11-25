@@ -11,5 +11,5 @@ public interface UserRepository extends CrudRepository<UserDB, Integer> {
 	public UserDB findByUsername(String string);
 
 	public UserDB findByEmail(String emailUserConnection);
-	
+
 }

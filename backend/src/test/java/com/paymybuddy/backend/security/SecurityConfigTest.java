@@ -17,32 +17,32 @@ public class SecurityConfigTest {
 
 	@Autowired
 	MockMvc mockMvc;
-	
+
 	@Test
 	public void shouldReturnDefaultMessageForConnectionAndReturnIsOk() throws Exception {
-		
+
 		mockMvc.perform(MockMvcRequestBuilders.get("/login"))
 			.andDo(MockMvcResultHandlers.print())
 			.andExpect(MockMvcResultMatchers.status().isOk());
-		
+
 	}
-	
+
 	@Test
 	public void testingConnectionForAnUserInDatabaseAndReturnAuthenticated() throws Exception {
-		
+
 		mockMvc.perform(SecurityMockMvcRequestBuilders.formLogin("/login")
 				.user("sophie@hotmail.fr").password("123456"))
 			.andExpect(SecurityMockMvcResultMatchers.authenticated());
-		
+
 	}
-	
+
 	@Test
 	public void testingUserLoginFailedAndReturnUnauthenticated() throws Exception {
-		
+
 		mockMvc.perform(SecurityMockMvcRequestBuilders.formLogin("/login")
 				.user("sophie@hotmail.fr").password("wrongpassword"))
 			.andExpect(SecurityMockMvcResultMatchers.unauthenticated());
-		
+
 	}
-	
+
 }

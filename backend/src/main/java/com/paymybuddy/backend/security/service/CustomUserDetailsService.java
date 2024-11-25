@@ -20,36 +20,36 @@ import com.paymybuddy.backend.security.model.CustomUserDetails;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private Logger log = LogManager.getLogger(CustomUserDetailsService.class); 
-	
+	private Logger log = LogManager.getLogger(CustomUserDetailsService.class);
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		
+
 		UserDB user = userRepository.findByEmail(email);
-		
+
 		if(user == null) {
 			log.error("User not found with email : {} ", email);
 			throw new UsernameNotFoundException("User not found");
 		}
-			
+
 		log.info("User charged with email : {} ", email);
 		return new CustomUserDetails(
 				user.getId(),
-				user.getEmail(), 
-				user.getPassword(), 
+				user.getEmail(),
+				user.getPassword(),
 				getGrantedAuthority("USER"));
 	}
-	
+
 	private List<GrantedAuthority> getGrantedAuthority(String role){
-		
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+
+		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
-		
+
 		return authorities;
-		
+
 	}
 
 }

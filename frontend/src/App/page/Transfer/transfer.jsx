@@ -182,7 +182,7 @@ function Transfer(){
                         {userSenderTransactions && userSenderTransactions.map((transaction, index) => (
                             <tr key={index}>
 
-                                <th scope="row">{transaction.receiver.username}</th>
+                                <th scope="row" titleo={transaction.receiver.email}>{transaction.receiver.username}</th>
                                 <th>{transaction.description}</th>
                                 <th className="resume-amount">{transaction.amount} €</th>
 

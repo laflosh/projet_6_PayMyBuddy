@@ -21,25 +21,32 @@ import jakarta.servlet.http.HttpServletResponse;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	@Autowired
 	CustomUserDetailsService customUserDetailsService;
-	
+
 	@Bean
 	public LoginSuccessHandler loginSuccessHandler() {
-		
+
 		return new LoginSuccessHandler();
-		
+
 	}
 
     // Configuration des rôles et accès par URL
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    	
+
         http.cors(Customizer.withDefaults())
         	.csrf(csrf -> csrf.disable()) //à retirer
         	.authorizeHttpRequests(auth -> auth
         		.requestMatchers(HttpMethod.POST, "/api/users").permitAll()
+        	    .requestMatchers(
+        	    		"/",
+        	            "/index.html",
+        	            "/favicon.ico",
+        	            "/logo192.png",
+        	            "/static/**"
+        	        ).permitAll()
         		.requestMatchers("/api/**").authenticated()
         		.requestMatchers("/login").permitAll()
         		.requestMatchers("/logout").authenticated()
@@ -60,34 +67,34 @@ public class SecurityConfig {
 
 
         return http.build();
-        
+
     }
-    
+
     @Bean
     public HttpFirewall allowSemiColonFirewall() {
     	StrictHttpFirewall firewall = new StrictHttpFirewall();
-    	
+
     	firewall.setAllowSemicolon(true);
-    	
+
     	return firewall;
     }
 
     // Gestionnaire d'authentification en mémoire avec BCryptPasswordEncoder pour le cryptage de mots de passe
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-    	
+
         return new BCryptPasswordEncoder();
-        
+
     }
 
     // Bean d'AuthenticationManager
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {
-    	
+
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
-        
+
         return authenticationManagerBuilder.build();
-        
+
     }
 }

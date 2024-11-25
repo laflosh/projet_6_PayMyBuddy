@@ -5,11 +5,11 @@ import com.paymybuddy.backend.model.UserDB;
 public class SenderTransactionDTO {
 
 	private int transactionId;
-	
+
 	private UserDB receiver;
-	
+
 	private String description;
-	
+
 	private double amount;
 
 	public int getTransactionId() {
@@ -43,5 +43,5 @@ public class SenderTransactionDTO {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
+
 }

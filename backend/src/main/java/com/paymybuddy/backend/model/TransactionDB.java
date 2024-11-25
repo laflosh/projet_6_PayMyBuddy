@@ -20,8 +20,8 @@ public class TransactionDB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "transaction_id")
-	private int id; 
-	
+	private int id;
+
 	@ManyToOne(
 			cascade = {
 					CascadeType.PERSIST,
@@ -30,7 +30,7 @@ public class TransactionDB {
 			)
 	@JoinColumn(name = "sender")
 	private UserDB sender;
-	
+
 	@ManyToOne(
 			cascade = {
 					CascadeType.PERSIST,
@@ -39,13 +39,13 @@ public class TransactionDB {
 			)
 	@JoinColumn(name = "receiver")
 	private UserDB receiver;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "amount")
 	private double amount;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -85,5 +85,5 @@ public class TransactionDB {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
+
 }

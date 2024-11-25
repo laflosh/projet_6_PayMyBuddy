@@ -3,15 +3,15 @@ package com.paymybuddy.backend.model.dtos;
 public class TransactionDTO {
 
 	private Integer id;
-	
+
 	private int senderId;
-	
+
 	private int receiverId;
-	
+
 	private String description;
-	
+
 	private double amount;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -51,5 +51,5 @@ public class TransactionDTO {
 	public void setAmount(double amont) {
 		this.amount = amont;
 	}
-	
+
 }

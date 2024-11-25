@@ -19,24 +19,24 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
 	@Autowired
 	private ObjectMapper objectMapper;
-	
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException{
-		
+
 		CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-		
-		Map<String, Object> userInfo = new HashMap<String, Object>();
+
+		Map<String, Object> userInfo = new HashMap<>();
 		userInfo.put("id", userDetails.getId());
 		userInfo.put("email", userDetails.getUsername());
 		userInfo.put("roles", userDetails.getAuthorities());
 		userInfo.put("message", "Authentication successful");
-		
+
         response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType("application/json");
-        
+
         response.getWriter().write(objectMapper.writeValueAsString(userInfo));
-        
+
 	}
-	
+
 }

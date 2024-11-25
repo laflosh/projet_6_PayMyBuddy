@@ -14,8 +14,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -29,16 +29,16 @@ public class UserDB {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private int id;
-	
+
 	@Column(name = "username")
 	private String username;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@ManyToMany(
 			fetch = FetchType.LAZY,
 			cascade = {
@@ -53,7 +53,7 @@ public class UserDB {
 			)
 	//@JsonIgnoreProperties({"password","connections", "transactionSender", "transactionReceiver"})
 	@JsonIgnore
-	private List<UserDB> connections = new ArrayList<UserDB>();
+	private List<UserDB> connections = new ArrayList<>();
 
 	@OneToMany(
 			mappedBy = "sender",
@@ -61,17 +61,17 @@ public class UserDB {
 			)
 	//@JsonIgnoreProperties({"sender"})
 	@JsonIgnore
-	private List<TransactionDB> transactionSender = new ArrayList<TransactionDB>();
-	
+	private List<TransactionDB> transactionSender = new ArrayList<>();
+
 	@OneToMany(
 			mappedBy = "receiver",
 			cascade = CascadeType.ALL
 			)
 	//@JsonIgnoreProperties({"receiver"})
 	@JsonIgnore
-	private List<TransactionDB> transactionReceiver = new ArrayList<TransactionDB>();
-	
-	
+	private List<TransactionDB> transactionReceiver = new ArrayList<>();
+
+
 	public int getId() {
 		return id;
 	}
@@ -111,7 +111,7 @@ public class UserDB {
 	public void setConnections(List<UserDB> connections) {
 		this.connections = connections;
 	}
-	
+
 	public List<TransactionDB> getTransactionSender() {
 		return transactionSender;
 	}
@@ -130,16 +130,16 @@ public class UserDB {
 
 	//Util method
 	public void addConnections(UserDB user) {
-		
+
 		connections.add(user);
-		
+
 	}
-	
+
 	public void removeConnection(UserDB user ) {
-		
+
 		connections.remove(user);
-		
+
 	}
-	
-	
+
+
 }
