@@ -51,7 +51,6 @@ public class UserDB {
 			joinColumns = @JoinColumn(name = "id_user"),
 			inverseJoinColumns = @JoinColumn(name = "id_user_connection")
 			)
-	//@JsonIgnoreProperties({"password","connections", "transactionSender", "transactionReceiver"})
 	@JsonIgnore
 	private List<UserDB> connections = new ArrayList<>();
 
@@ -59,7 +58,6 @@ public class UserDB {
 			mappedBy = "sender",
 			cascade = CascadeType.ALL
 			)
-	//@JsonIgnoreProperties({"sender"})
 	@JsonIgnore
 	private List<TransactionDB> transactionSender = new ArrayList<>();
 
@@ -67,7 +65,6 @@ public class UserDB {
 			mappedBy = "receiver",
 			cascade = CascadeType.ALL
 			)
-	//@JsonIgnoreProperties({"receiver"})
 	@JsonIgnore
 	private List<TransactionDB> transactionReceiver = new ArrayList<>();
 
